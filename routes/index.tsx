@@ -17,13 +17,13 @@ export async function getTweetData(statusID: string) {
   }).then((res) => res.json());
 }
 
-export const handler: Handlers = {
+/* export const handler: Handlers = {
   async GET(_req, ctx) {
     const response = await getTweetData("1537687751272845312")
     console.log(response);
     return ctx.render(response);
   },
-};
+}; */
 export default function Home({data}:PageProps) {
   return (
     <>
