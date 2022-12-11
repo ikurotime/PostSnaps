@@ -3,10 +3,10 @@ import Counter from "../islands/Counter.tsx";
 import { asset } from "$fresh/src/runtime/utils.ts";
 import ResizableBox from "../islands/Box.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import "https://deno.land/x/dotenv/load.ts";
+
 
 export async function getTweetData(statusID: string) {
-  return await fetch(Deno.env.get("BASE_URL") + "/api/get-tweet-info", {
+  return await fetch("/api/get-tweet-info", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
