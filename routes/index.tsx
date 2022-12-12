@@ -5,7 +5,9 @@ import ResizableBox from "../islands/Box.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 
 
-export async function getTweetData(statusID: string) {
+export async function getTweetData(link: string) {
+  const statusID = link?.split("/").pop()!.split("?").shift();
+
   return await fetch("/api/get-tweet-info", {
     method: "POST",
     headers: {
@@ -31,8 +33,8 @@ export default function Home({data}:PageProps) {
         <title>Fresh App</title>
         <link rel="stylesheet" href={asset("../globals.css")} />
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md">
-      <div class="w-full h-full grid place-content-center">
+      <div class="p-4 mx-auto max-w-screen-md h-full">
+      <div class="w-full h-full flex flex-col justify-around">
 			<ResizableBox content={data}/>
 		</div>
       </div>
