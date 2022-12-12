@@ -17,10 +17,7 @@ export default function BottomBar(
   { getImage, style, changeStyle, handleToast }: Props,
 ) {
   return (
-    <a
-      href="#"
-      class="flex justify-center gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 hover:bg-gray-700"
-    >
+    <div class="flex justify-center gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
       <button
         data-popover-target="popover-no-arrow"
         type="button"
@@ -118,6 +115,6 @@ export default function BottomBar(
         Copy Image to Clipboard
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
-    </a>
+    </div>
   );
 }
