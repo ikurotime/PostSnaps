@@ -16,7 +16,7 @@ export default function BottomBar({ getImage, style, changeStyle }: Props) {
   return (
     <a
       href="#"
-      class="flex gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 hover:bg-gray-700"
+      class="flex justify-center gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 hover:bg-gray-700"
     >
       <button
         data-popover-target="popover-no-arrow"
@@ -81,6 +81,35 @@ export default function BottomBar({ getImage, style, changeStyle }: Props) {
         class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
       >
         Download Image
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+      <button
+        onClick={() => getImage()}
+        type="button"
+        data-tooltip-target="tooltip-copy"
+        data-tooltip-placement="top"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
+      >
+        <svg
+          aria-hidden="true"
+          class="mx-auto mt-px w-6 h-6"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z">
+          </path>
+          <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z"></path>
+        </svg>
+
+        <span class="sr-only">Copy</span>
+      </button>
+      <div
+        id="tooltip-copy"
+        role="tooltip"
+        class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
+      >
+        Copy Image to Clipboard
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
     </a>

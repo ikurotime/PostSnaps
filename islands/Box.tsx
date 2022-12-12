@@ -73,13 +73,23 @@ const ResizableBox = ({ content }: { content: Content }) => {
     setStyle(style);
   };
   const captureElement = useRef<HTMLDivElement>(null);
+  function saveScreenshot(canvas: any) {
+    const fileName = "postsnap";
+    const link = document.createElement("a");
+    link.download = fileName + ".png";
+    console.log(canvas);
+    canvas.toBlob(function (blob: Blob) {
+      console.log(blob);
+      link.href = URL.createObjectURL(blob);
+      link.click();
+    });
+  }
   const getImage = () => {
     if (captureElement && captureElement.current) {
-      html2canvas(captureElement.current, { allowTaint: true }).then(
-        (canvas) => {
-          document.body.appendChild(canvas);
-        },
-      );
+      html2canvas(captureElement.current, {
+        allowTaint: true,
+        useCORS: true,
+      }).then(saveScreenshot);
     }
   };
 
