@@ -1,9 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
-import Counter from "../islands/Counter.tsx";
 import { asset } from "$fresh/src/runtime/utils.ts";
 import ResizableBox from "../islands/Box.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-
 
 export async function getTweetData(link: string) {
   const statusID = link?.split("/").pop()!.split("?").shift();
@@ -26,18 +24,23 @@ export async function getTweetData(link: string) {
     return ctx.render(response);
   },
 }; */
-export default function Home({data}:PageProps) {
+export default function Home({ data }: PageProps) {
   return (
     <>
       <Head>
         <title>Fresh App</title>
         <link rel="stylesheet" href={asset("../globals.css")} />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
+        />
       </Head>
       <div class="p-4 mx-auto max-w-screen-md h-full">
-      <div class="w-full h-full flex flex-col justify-around">
-			<ResizableBox content={data}/>
-		</div>
+        <div class="w-full h-full flex flex-col justify-around">
+          <ResizableBox content={data} />
+        </div>
       </div>
+      <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     </>
   );
 }
