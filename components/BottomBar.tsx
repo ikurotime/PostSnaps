@@ -13,11 +13,16 @@ const STYLES = [
   "bg-gradient-to-r from-teal-200 to-lime-200 to-blue-600 ",
   "bg-gradient-to-r from-red-200 via-red-300 to-blue-600 ",
 ];
+const RESOLUTIONS = [
+  "460x460",
+  "580x580",
+  "700x700",
+];
 export default function BottomBar(
   { getImage, style, changeStyle, handleToast }: Props,
 ) {
   return (
-    <div class="flex justify-center gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
+    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[330px] flex justify-center gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
       <button
         data-popover-target="popover-no-arrow"
         type="button"
@@ -114,6 +119,44 @@ export default function BottomBar(
       >
         Copy Image to Clipboard
         <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+      <div data-dial-init class="relative group">
+        <div
+          id="speed-dial-menu-dropdown-alternative"
+          class="absolute bottom-14 left-0 flex w-48 hidden flex-col justify-end py-1 mb-4 space-y-2 bg-white rounded-lg border border-gray-100 shadow-sm dark:bg-gray-700 dark:border-gray-600"
+        >
+          <ul class="text-sm text-gray-500 dark:text-gray-300">
+            {RESOLUTIONS.map((resolution) => (
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center py-2 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white"
+                >
+                  <span class="text-sm font-medium">{resolution}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button
+          type="button"
+          data-dial-toggle="speed-dial-menu-dropdown-alternative"
+          aria-controls="speed-dial-menu-dropdown-alternative"
+          aria-expanded="false"
+          class="flex justify-center items-center ml-auto w-14 h-14 text-white bg-blue-700 rounded-full hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-8 h-8"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+            </path>
+          </svg>
+          <span class="sr-only">Open actions menu</span>
+        </button>
       </div>
     </div>
   );

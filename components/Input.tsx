@@ -6,7 +6,10 @@ type Props = {
 
 export default function Input({ tweetId, onSubmit, handleChange }: Props) {
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      class="fixed top-10 max-w-screen-md w-full z-10 mx-auto left-0 right-0"
+      onSubmit={onSubmit}
+    >
       <label
         for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only text-white"

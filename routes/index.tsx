@@ -17,13 +17,6 @@ export async function getTweetData(link: string) {
   }).then((res) => res.json());
 }
 
-/* export const handler: Handlers = {
-  async GET(_req, ctx) {
-    const response = await getTweetData("1537687751272845312")
-    console.log(response);
-    return ctx.render(response);
-  },
-}; */
 export default function Home({ data }: PageProps) {
   return (
     <>
@@ -35,8 +28,8 @@ export default function Home({ data }: PageProps) {
           href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
         />
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md h-full">
-        <div class="w-full h-full flex flex-col justify-around">
+      <div class="min-h-screen p-4 mx-auto max-w-screen-md h-full">
+        <div class="w-full min-h-screen m-auto flex flex-col justify-center py-14">
           <ResizableBox content={data} />
         </div>
       </div>

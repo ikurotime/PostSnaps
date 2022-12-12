@@ -15,8 +15,9 @@ export default function TweetContainer(
 ) {
   return (
     <div
+      id="container"
       ref={captureElement as Ref<HTMLDivElement>}
-      className={"relative flex justify-center items-center rounded-xl shadow-2xl scale-90 p-5 min-h-[462px] min-w-[425px] w-auto h-auto " +
+      className={"relative flex justify-center items-center   rounded-xl shadow-2xl scale-90 p-5 min-h-[462px] min-w-[425px] " +
         style}
     >
       <div id="glassmorphism" className="p-6 min-w-[80%] h-auto w-auto">

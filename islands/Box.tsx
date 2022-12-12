@@ -157,6 +157,7 @@ const ResizableBox = ({ content }: { content: Content }) => {
         tweetId={tweetId}
         onSubmit={onSubmit}
       />
+
       <TweetContainer
         captureElement={captureElement}
         style={style}
