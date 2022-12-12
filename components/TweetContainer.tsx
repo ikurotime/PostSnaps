@@ -1,16 +1,17 @@
 import { Ref } from "preact";
-import type { TweetData, UserData } from "../islands/Box.tsx";
+import type { MediaType, TweetData, UserData } from "../islands/Box.tsx";
 import TwitterIcon from "./TwitterIcon.tsx";
 
 type Props = {
   captureElement: Ref<HTMLDivElement>;
+  attachment: MediaType;
   style: string;
   user: UserData;
   tweetData: TweetData;
 };
 
 export default function TweetContainer(
-  { captureElement, style, user, tweetData }: Props,
+  { captureElement, style, user, tweetData, attachment }: Props,
 ) {
   return (
     <div
@@ -35,8 +36,14 @@ export default function TweetContainer(
           </div>
 
           <p class="self-start whitespace-pre-line text-2xl">
-            {tweetData.text}
+            {tweetData.text.split("https").shift()}
           </p>
+          {attachment && (
+            <img
+              src={attachment.url}
+              className="rounded-xl w-3/6 object-cover"
+            />
+          )}
           <div className="flex self-start gap-2">
             {tweetData?.created_at && (
               <span class="text-gray-700">

@@ -24,15 +24,21 @@ export type TweetData = {
     quote_count: number;
   };
 };
+export type MediaType = {
+  media_key: string;
+  type: string;
+  url: string;
+};
 type Content = {
   data: TweetData[];
   includes: {
     users: UserData[];
+    media: MediaType[];
   };
 };
 
 const ResizableBox = ({ content }: { content: Content }) => {
-  const [tweetData, setTweetData] = useState<TweetData>({
+  /* const [tweetData, setTweetData] = useState<TweetData>({
     text: "Paste a tweet URL to get started!",
     created_at: "12/12/2022 13:13",
     public_metrics: {
@@ -41,14 +47,50 @@ const ResizableBox = ({ content }: { content: Content }) => {
       reply_count: 24,
       quote_count: 5,
     },
+  }); */
+  const [tweetContent, setTweetContent] = useState<Content>({
+    data: [
+      {
+        text: "Paste a tweet URL to get started!",
+        created_at: "12/12/2022 13:13",
+        public_metrics: {
+          like_count: 256,
+          retweet_count: 43,
+          reply_count: 24,
+          quote_count: 5,
+        },
+      },
+    ],
+    includes: {
+      users: [
+        {
+          name: "David Huertas",
+          username: "ikurotime",
+          profile_image_url:
+            "https://pbs.twimg.com/profile_images/1585667050718085120/LumQqxjx_400x400.jpg",
+        },
+      ],
+      media: [
+        {
+          media_key: "",
+          type: "",
+          url: "",
+        },
+      ],
+    },
   });
   const [tweetId, setTweetId] = useState<string>("");
-  const [user, setUser] = useState<UserData>({
+  /* const [user, setUser] = useState<UserData>({
     name: "David Huertas",
     username: "ikurotime",
     profile_image_url:
       "https://pbs.twimg.com/profile_images/1585667050718085120/LumQqxjx_400x400.jpg",
   });
+  const [attachment, setAttachment] = useState<MediaType>({
+    media_key: "",
+    type: "",
+    url: "",
+  }); */
   const [style, setStyle] = useState<string>("style-1");
   const [isToastShown, setIsToastShown] = useState<boolean>(false);
   const handleChange = (e: any) => {
@@ -58,10 +100,8 @@ const ResizableBox = ({ content }: { content: Content }) => {
   const onSubmit = (e: any) => {
     e.preventDefault();
     getTweetData(tweetId).then((res) => {
-      setTweetData(res.data[0]);
-      setUser(res.includes.users[0]);
+      setTweetContent(res);
     });
-    console.log(tweetId);
   };
   const changeStyle = (style: string) => {
     setStyle(style);
@@ -106,8 +146,7 @@ const ResizableBox = ({ content }: { content: Content }) => {
   };
   useEffect(() => {
     if (content?.data === undefined) return;
-    setTweetData(content.data[0]);
-    setUser(content.includes.users[0]);
+    setTweetContent(content);
   }, [content]);
 
   return (
@@ -121,8 +160,9 @@ const ResizableBox = ({ content }: { content: Content }) => {
       <TweetContainer
         captureElement={captureElement}
         style={style}
-        tweetData={tweetData}
-        user={user}
+        tweetData={tweetContent?.data[0]}
+        attachment={tweetContent?.includes.media[0]}
+        user={tweetContent?.includes.users[0]}
       />
       <BottomBar
         getImage={getImage}
