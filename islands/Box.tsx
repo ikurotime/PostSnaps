@@ -7,6 +7,7 @@ import TwitterIcon from "../components/TwitterIcon.tsx";
 import Input from "../components/Input.tsx";
 import TweetContainer from "../components/TweetContainer.tsx";
 import BottomBar from "../components/BottomBar.tsx";
+import Toast from "../components/Toast.tsx";
 
 export type UserData = {
   name: string;
@@ -41,6 +42,7 @@ const ResizableBox = ({ content }: { content: Content }) => {
       quote_count: 5,
     },
   });
+  const [tweetId, setTweetId] = useState<string>("");
   const [user, setUser] = useState<UserData>({
     name: "David Huertas",
     username: "ikurotime",
@@ -48,15 +50,7 @@ const ResizableBox = ({ content }: { content: Content }) => {
       "https://pbs.twimg.com/profile_images/1585667050718085120/LumQqxjx_400x400.jpg",
   });
   const [style, setStyle] = useState<string>("style-1");
-  useEffect(() => {
-    if (content?.data === undefined) return;
-    setTweetData(content.data[0]);
-    setUser(content.includes.users[0]);
-  }, [content]);
-  useEffect(() => {
-    console.log(tweetData);
-  }, [tweetData]);
-  const [tweetId, setTweetId] = useState<string>("");
+  const [isToastShown, setIsToastShown] = useState<boolean>(false);
   const handleChange = (e: any) => {
     setTweetId(e.target.value);
   };
@@ -77,24 +71,48 @@ const ResizableBox = ({ content }: { content: Content }) => {
     const fileName = "postsnap";
     const link = document.createElement("a");
     link.download = fileName + ".png";
-    console.log(canvas);
     canvas.toBlob(function (blob: Blob) {
-      console.log(blob);
       link.href = URL.createObjectURL(blob);
       link.click();
     });
   }
-  const getImage = () => {
+  function copyToClipboard(canvas: any) {
+    canvas.toBlob(function (blob: Blob) {
+      navigator.clipboard
+        .write([
+          new ClipboardItem(
+            Object.defineProperty({}, blob.type, {
+              value: blob,
+              enumerable: true,
+            }),
+          ),
+        ]);
+    });
+  }
+
+  const getImage = (type: string) => {
     if (captureElement && captureElement.current) {
       html2canvas(captureElement.current, {
         allowTaint: true,
         useCORS: true,
-      }).then(saveScreenshot);
+      }).then(type === "save" ? saveScreenshot : copyToClipboard);
     }
   };
+  const handleToast = () => {
+    setIsToastShown(true);
+    setTimeout(() => {
+      setIsToastShown(false);
+    }, 2000);
+  };
+  useEffect(() => {
+    if (content?.data === undefined) return;
+    setTweetData(content.data[0]);
+    setUser(content.includes.users[0]);
+  }, [content]);
 
   return (
     <>
+      <Toast text="Image copied" isToastShown={isToastShown} />
       <Input
         handleChange={handleChange}
         tweetId={tweetId}
@@ -106,7 +124,12 @@ const ResizableBox = ({ content }: { content: Content }) => {
         tweetData={tweetData}
         user={user}
       />
-      <BottomBar getImage={getImage} style={style} changeStyle={changeStyle} />
+      <BottomBar
+        getImage={getImage}
+        style={style}
+        changeStyle={changeStyle}
+        handleToast={handleToast}
+      />
     </>
   );
 };

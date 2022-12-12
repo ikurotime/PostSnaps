@@ -1,7 +1,8 @@
 type Props = {
-  getImage: () => void;
+  getImage: (type: string) => void;
   style: string;
   changeStyle: (style: string) => void;
+  handleToast: () => void;
 };
 const STYLES = [
   "style-1",
@@ -12,7 +13,9 @@ const STYLES = [
   "bg-gradient-to-r from-teal-200 to-lime-200 to-blue-600 ",
   "bg-gradient-to-r from-red-200 via-red-300 to-blue-600 ",
 ];
-export default function BottomBar({ getImage, style, changeStyle }: Props) {
+export default function BottomBar(
+  { getImage, style, changeStyle, handleToast }: Props,
+) {
   return (
     <a
       href="#"
@@ -53,7 +56,7 @@ export default function BottomBar({ getImage, style, changeStyle }: Props) {
       </div>
 
       <button
-        onClick={() => getImage()}
+        onClick={() => getImage("save")}
         type="button"
         data-tooltip-target="tooltip-download"
         data-tooltip-placement="top"
@@ -84,7 +87,10 @@ export default function BottomBar({ getImage, style, changeStyle }: Props) {
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
       <button
-        onClick={() => getImage()}
+        onClick={() => {
+          getImage("copy");
+          handleToast();
+        }}
         type="button"
         data-tooltip-target="tooltip-copy"
         data-tooltip-placement="top"
