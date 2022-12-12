@@ -28,7 +28,7 @@ export default function Home({ data }: PageProps) {
   return (
     <>
       <Head>
-        <title>Fresh App</title>
+        <title>PostSnaps</title>
         <link rel="stylesheet" href={asset("../globals.css")} />
         <link
           rel="stylesheet"
