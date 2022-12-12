@@ -34,17 +34,17 @@ export default function BottomBar(
         data-popover
         id="popover-no-arrow"
         role="tooltip"
-        class="absolute z-10 invisible inline-block w-64 text-sm font-light transition-opacity duration-300 border rounded-lg shadow-sm opacity-0 text-gray-400 border-gray-600 bg-gray-800"
+        class="absolute z-10 invisible inline-block w-60 text-sm font-light transition-opacity duration-300 border rounded-lg shadow-sm opacity-0 text-gray-400 border-gray-600 bg-gray-800"
       >
         <div class="px-3 py-2 border-b rounded-t-lg border-gray-600 bg-gray-700">
           <h3 class="font-semibold text-white">
             Select color
           </h3>
         </div>
-        <div class="grid grid-cols-3 px-3 py-2">
+        <div class="grid grid-cols-3 place-content-center px-3 py-2 w-full">
           {STYLES.map((style) => (
             <div
-              class="p-2 w-12 rounded hover:bg-gray-700"
+              class="p-2 w-full rounded hover:bg-gray-700 flex justify-center items-center cursor-pointer"
               onClick={() => changeStyle(style)}
             >
               <div
