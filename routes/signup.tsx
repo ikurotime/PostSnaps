@@ -21,7 +21,7 @@ export default function signup({ data }: PageProps) {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
-          property="og:url"
+          property="og:image"
           content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
             data.tweetId}
         />
