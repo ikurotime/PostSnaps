@@ -23,7 +23,19 @@ export default function login({ data }: PageProps) {
         <meta
           property="og:image"
           content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
-            data.tweetId}
+            data}
+        />
+        <meta name="twitter:site" content="@ikurotime" />
+        <meta name="twitter:title" content="PostSnaps" />
+        <meta
+          name="twitter:description"
+          content="Create beatiful screenshots of any tweet"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:image:src"
+          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
+            data}
         />
         <link rel="stylesheet" href={asset("../globals.css")} />
       </Head>

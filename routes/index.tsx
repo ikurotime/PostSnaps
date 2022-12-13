@@ -37,11 +37,27 @@ export default function Home({ data }: PageProps) {
       <Head>
         <title>PostSnaps</title>
         <link rel="stylesheet" href={asset("../globals.css")} />
-        <meta name="description" content="PostSnaps" />
+        <meta name="og:title" content="PostSnaps" />
+        <meta
+          name="og:description"
+          content="Create beatiful screenshots of any tweet"
+        />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image"
+          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
+            data}
+        />
+        <meta name="twitter:site" content="@ikurotime" />
+        <meta name="twitter:title" content="PostSnaps" />
+        <meta
+          name="twitter:description"
+          content="Create beatiful screenshots of any tweet"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:image:src"
           content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
             data}
         />
