@@ -24,12 +24,27 @@ export async function getTweetData(statusID: string) {
   }).then((res) => res.json());
 }
 
-export default function Home() {
+export const handler: Handlers = {
+  GET(req, ctx) {
+    const params = new URL(req.url);
+    const tweetId = params.searchParams.get("tweetId") || "";
+    return ctx.render(tweetId);
+  },
+};
+export default function Home({ data }: PageProps) {
   return (
     <>
       <Head>
         <title>PostSnaps</title>
         <link rel="stylesheet" href={asset("../globals.css")} />
+        <meta name="description" content="PostSnaps" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:url"
+          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
+            data}
+        />
         <link
           rel="stylesheet"
           href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
