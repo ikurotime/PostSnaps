@@ -1,13 +1,26 @@
-type Props = {
-  tweetId: string;
-  onSubmit: (e: any) => void;
-  handleChange: (e: any) => void;
-};
+import { useContext, useEffect, useState } from "preact/hooks";
+import { useAppState } from "../components/ContextProvider.tsx";
+import { AppContext } from "../context/AppContext.ts";
+import { getTweetData } from "../routes/index.tsx";
 
-export default function Input({ tweetId, onSubmit, handleChange }: Props) {
+export default function Input() {
+  const { dispatch } = useAppState();
+  const [tweetId, setTweetId] = useState("");
+  const handleChange = (e: any) => {
+    setTweetId(e.target.value);
+  };
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    const statusID = tweetId?.split("/").pop()!.split("?").shift() || "";
+    getTweetData(statusID).then((res) => {
+      dispatch({ type: "SET_TWEET_CONTENT", payload: res });
+    });
+    window.location.assign("?tweetId=" + statusID);
+  };
+
   return (
     <form
-      class="fixed top-10 max-w-screen-md w-full z-10 mx-auto left-0 right-0"
+      class="max-w-[500px] flex-1 z-10 "
       onSubmit={onSubmit}
     >
       <label

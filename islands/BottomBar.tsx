@@ -1,9 +1,9 @@
-type Props = {
-  getImage: (type: string) => void;
-  style: string;
-  changeStyle: (style: string) => void;
-  handleToast: () => void;
-};
+import { Ref } from "preact";
+import { useContext } from "preact/hooks";
+import { AppContext } from "../context/AppContext.ts";
+
+import { getImage } from "../utils.ts";
+
 const STYLES = [
   "style-1",
   "bg-gradient-to-br from-purple-600 to-blue-500 ",
@@ -13,23 +13,33 @@ const STYLES = [
   "bg-gradient-to-r from-teal-200 to-lime-200 to-blue-600 ",
   "bg-gradient-to-r from-red-200 via-red-300 to-blue-600 ",
 ];
-const RESOLUTIONS = [
-  "460x460",
-  "580x580",
-  "700x700",
-];
-export default function BottomBar(
-  { getImage, style, changeStyle, handleToast }: Props,
-) {
+
+export default function BottomBar() {
+  const {
+    captureElement,
+    isOpaque,
+    isLogo,
+    padding,
+    selectedStyle,
+    dispatch,
+  } = useContext(
+    AppContext,
+  );
+  const handleToast = () => {
+    dispatch({ type: "SET_TOAST", payload: true });
+    setTimeout(() => {
+      dispatch({ type: "SET_TOAST", payload: false });
+    }, 2000);
+  };
   return (
-    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[330px] flex justify-center gap-5 w-full p-6 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
+    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[330px] flex justify-center gap-5 w-full p-2 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
       <button
         data-popover-target="popover-no-arrow"
         type="button"
         class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
       >
         <div
-          class={"h-8 w-8 rounded-full " + style}
+          class={"h-8 w-8 rounded-full " + selectedStyle}
         />
       </button>
       <div
@@ -47,7 +57,7 @@ export default function BottomBar(
           {STYLES.map((style) => (
             <div
               class="p-2 w-full rounded hover:bg-gray-700 flex justify-center items-center cursor-pointer"
-              onClick={() => changeStyle(style)}
+              onClick={() => dispatch({ type: "SET_STYLE", payload: style })}
             >
               <div
                 class={"h-8 w-8 rounded-full " + style}
@@ -58,7 +68,7 @@ export default function BottomBar(
       </div>
 
       <button
-        onClick={() => getImage("save")}
+        onClick={() => getImage(captureElement, "save")}
         type="button"
         data-tooltip-target="tooltip-download"
         data-tooltip-placement="top"
@@ -90,7 +100,7 @@ export default function BottomBar(
       </div>
       <button
         onClick={() => {
-          getImage("copy");
+          getImage(captureElement, "copy");
           handleToast();
         }}
         type="button"
@@ -126,16 +136,69 @@ export default function BottomBar(
           class="absolute bottom-14 left-0 flex w-48 hidden flex-col justify-end py-1 mb-4 space-y-2 bg-white rounded-lg border border-gray-100 shadow-sm dark:bg-gray-700 dark:border-gray-600"
         >
           <ul class="text-sm text-gray-500 dark:text-gray-300">
-            {RESOLUTIONS.map((resolution) => (
-              <li>
-                <a
-                  href="#"
-                  class="flex items-center py-2 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white"
+            <li>
+              <div class="flex items-center py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white">
+                <input
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  checked={isLogo}
+                  onChange={() =>
+                    dispatch({ type: "SET_LOGO", payload: !isLogo })}
+                  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  <span class="text-sm font-medium">{resolution}</span>
-                </a>
-              </li>
-            ))}
+                  Logo
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white">
+                <input
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  checked={isOpaque}
+                  onChange={() =>
+                    dispatch({ type: "SET_OPAQUE", payload: !isOpaque })}
+                  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Opaque
+                </label>
+              </div>
+            </li>
+            <li>
+              <div class="flex flex-col items-start py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white">
+                <label
+                  for="steps-range"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Padding: {padding}
+                </label>
+                <input
+                  id="steps-range"
+                  type="range"
+                  min="0"
+                  max="10"
+                  value={padding}
+                  step="1"
+                  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                  onInput={(e: any) => {
+                    dispatch({
+                      type: "SET_PADDING",
+                      payload: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </li>
           </ul>
         </div>
         <button

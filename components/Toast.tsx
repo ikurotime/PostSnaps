@@ -1,13 +1,15 @@
+import { useAppState } from "../components/ContextProvider.tsx";
+
 type Props = {
   text: string;
-  isToastShown: boolean;
 };
 
-export default function Toast({ text, isToastShown }: Props) {
+export default function Toast({ text }: Props) {
+  const { isToastShown } = useAppState();
   return (
     <div
       id="toast-success"
-      class={"absolute right-5 top-5 z-10 flex items-center p-4 mb-4 w-full max-w-xs bg-white rounded-lg shadow text-gray-400 bg-gray-800 transition-all " +
+      class={"fixed right-5 top-5 z-10 flex items-center p-4 mb-4 w-full max-w-xs bg-white rounded-lg shadow text-gray-400 bg-gray-800 transition-all " +
         (isToastShown ? "visible" : "invisible")}
       role="alert"
     >

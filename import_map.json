@@ -9,6 +9,7 @@
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
     "react-resizable": "https://esm.sh/react-resizable@3.0.4",
-    "html2canvas": "https://esm.sh/html2canvas@1.4.1"
+    "html2canvas": "https://esm.sh/html2canvas@1.4.1",
+    "supabase": "https://esm.sh/@supabase/supabase-js@2"
   }
 }

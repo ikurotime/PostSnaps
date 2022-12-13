@@ -1,11 +1,18 @@
 import { Head } from "$fresh/runtime.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
-import ResizableBox from "../islands/Box.tsx";
+//import Layout from "../islands/Layout.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
+import HomeContent from "../components/HomeContent.tsx";
+import TweetContainer from "../islands/TweetContainer.tsx";
+import BottomBar from "../islands/BottomBar.tsx";
+import Layout from "../islands/Layout.tsx";
+import ContextProvider, {
+  useAppState,
+} from "../components/ContextProvider.tsx";
+import Navbar from "../islands/Navbar.tsx";
+import { useEffect } from "https://esm.sh/v95/preact@10.11.0/hooks/src/index";
 
-export async function getTweetData(link: string) {
-  const statusID = link?.split("/").pop()!.split("?").shift();
-
+export async function getTweetData(statusID: string) {
   return await fetch("/api/get-tweet-info", {
     method: "POST",
     headers: {
@@ -17,7 +24,7 @@ export async function getTweetData(link: string) {
   }).then((res) => res.json());
 }
 
-export default function Home({ data }: PageProps) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -28,11 +35,8 @@ export default function Home({ data }: PageProps) {
           href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
         />
       </Head>
-      <div class="min-h-screen p-4 mx-auto max-w-screen-md h-full">
-        <div class="w-full min-h-screen m-auto flex flex-col justify-center py-14">
-          <ResizableBox content={data} />
-        </div>
-      </div>
+      <Layout />
+
       <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     </>
   );
