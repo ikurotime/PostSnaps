@@ -12,10 +12,14 @@ export default function Input() {
   const onSubmit = (e: any) => {
     e.preventDefault();
     const statusID = tweetId?.split("/").pop()!.split("?").shift() || "";
-    getTweetData(statusID).then((res) => {
-      dispatch({ type: "SET_TWEET_CONTENT", payload: res });
-    });
-    window.location.assign("?tweetId=" + statusID);
+    if (window.location.pathname !== "/") {
+      window.location.assign("/?tweetId=" + statusID);
+    } else {
+      window.location.assign("?tweetId=" + statusID);
+      getTweetData(statusID).then((res) => {
+        dispatch({ type: "SET_TWEET_CONTENT", payload: res });
+      });
+    }
   };
 
   return (

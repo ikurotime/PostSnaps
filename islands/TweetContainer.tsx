@@ -1,10 +1,6 @@
 import { Ref } from "preact";
-//import { MediaType, useAppState, UserData } from "../islands/Layout.tsx";
-
 import TwitterIcon from "../components/TwitterIcon.tsx";
 import { useEffect, useRef } from "preact/hooks";
-import { useContext } from "preact/hooks";
-import { AppContext } from "../context/AppContext.ts";
 import { useAppState } from "../components/ContextProvider.tsx";
 import { getTweetData } from "../routes/index.tsx";
 
@@ -53,7 +49,7 @@ export default function TweetContainer() {
             <div class="w-[40vw] h-60 grid place-items-center">
               <div role="status">
                 <svg
-                  class="inline mr-2 w-20 h-20 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                  class="inline mr-2 w-20 h-20 text-gray-200 animate-spin dark:text-gray-600"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

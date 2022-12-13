@@ -1,5 +1,6 @@
 import { HandlerContext } from "$fresh/server.ts";
 
+import "https://deno.land/x/dotenv/load.ts";
 export const handler = async (
   _req: Request,
   _ctx: HandlerContext,
@@ -11,8 +12,7 @@ export const handler = async (
       {
         method: "GET",
         headers: {
-          Authorization:
-            "Bearer AAAAAAAAAAAAAAAAAAAAACGuaQEAAAAAn1YKFFsQgA29%2BbJ8AV5YUfuoyvw%3D7qy34nofvepWAhGZSBlFlZO5lny6lzVHcysa9dtapOTImZnVHX",
+          Authorization: `Bearer ${Deno.env.get("TWITTER_BEARER_TOKEN")}`,
         },
       },
     );
@@ -31,5 +31,5 @@ export const handler = async (
     );
   }
 
-  return new Response("Something went wrong");
+  return new Response(JSON.stringify({ error: "Something went wrong" }));
 };
