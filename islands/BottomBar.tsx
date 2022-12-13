@@ -32,7 +32,7 @@ export default function BottomBar() {
     }, 2000);
   };
   return (
-    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[330px] flex justify-center gap-5 w-full p-2 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
+    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[365px] flex justify-center gap-5 w-full p-2 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
       <button
         data-popover-target="popover-no-arrow"
         type="button"
@@ -128,6 +128,42 @@ export default function BottomBar() {
         class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
       >
         Copy Image to Clipboard
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText(window.location.href);
+          handleToast();
+        }}
+        type="button"
+        data-tooltip-target="tooltip-copy-link"
+        data-tooltip-placement="top"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+          >
+          </path>
+        </svg>
+
+        <span class="sr-only">Copy</span>
+      </button>
+      <div
+        id="tooltip-copy-link"
+        role="tooltip"
+        class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
+      >
+        Copy Link to Clipboard
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
       <div data-dial-init class="relative group">

@@ -51,7 +51,7 @@ const Layout = () => {
     <ContextProvider>
       <div class="min-h-screen p-4 mx-auto max-w-screen-md h-full">
         <div class="w-full min-h-screen m-auto flex flex-col justify-center py-14">
-          <Toast text="Image copied" />
+          <Toast text="Copied to clipboard" />
           <HomeContent />
         </div>
       </div>
