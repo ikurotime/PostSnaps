@@ -26,7 +26,7 @@ export default function ContextProvider(
     window.location.hash = "";
     if (access_token) {
       document.cookie =
-        `ps.supabase.auth.token=${access_token}; max-age=${expires_in}; path=/; SameSite=Lax; Secure=true; domain=${window.location.hostname}`;
+        `ps.supabase.auth.token=${access_token}; max-age=${expires_in}; path=/; httpOnly=true; SameSite=Lax; Secure=true; domain=${window.location.hostname}`;
       window.location.href = "/";
       /*  getUserData(access_token); */
     }
