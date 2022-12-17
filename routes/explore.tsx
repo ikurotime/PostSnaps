@@ -21,31 +21,33 @@ export default function Explore({ data }: PageProps) {
   return (
     <>
       <Head>
-        <title>PostSnaps</title>
+        <title>PostSnaps - Explore</title>
         <link rel="stylesheet" href={asset("../globals.css")} />
-        <meta name="og:title" content="PostSnaps" />
+        <meta name="og:title" content="PostSnaps - Explore" />
+        <meta
+          name="keywords"
+          content="screenshot tweets, tweet capture, custom tweet screenshots, share tweets, social media sharing, twitter moments, celebrity tweets, politician tweets, friend tweets, memorable tweets, funny tweets, inspiring tweets, deno, deno fresh, supabase, supabase functions"
+        />
         <meta
           name="og:description"
-          content="Create beatiful screenshots of any tweet"
+          content="Discover the latest and greatest tweets from a variety of sources, including celebrities, politicians, and your friends and followers. With PostSnaps, it's easy to find and share the most memorable, funny, or inspiring moments on Twitter. Simply use the search bar to find a specific tweet or topic, or browse through the trending tweets to see what's hot right now."
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image"
-          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
-            data}
+          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/"}
         />
         <meta name="twitter:site" content="@ikurotime" />
         <meta name="twitter:title" content="PostSnaps" />
         <meta
           name="twitter:description"
-          content="Create beatiful screenshots of any tweet"
+          content="Discover the latest and greatest tweets from a variety of sources, including celebrities, politicians, and your friends and followers. With PostSnaps, it's easy to find and share the most memorable, funny, or inspiring moments on Twitter. Simply use the search bar to find a specific tweet or topic, or browse through the trending tweets to see what's hot right now."
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image:src"
-          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
-            data}
+          content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/"}
         />
         <link
           rel="stylesheet"
