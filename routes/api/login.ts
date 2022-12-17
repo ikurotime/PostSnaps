@@ -22,6 +22,7 @@ export const handler = async (
     value: data.session?.access_token as string,
     maxAge: data.session?.expires_in,
     sameSite: "Lax",
+    httpOnly: true,
     path: "/",
     secure: true,
   });
