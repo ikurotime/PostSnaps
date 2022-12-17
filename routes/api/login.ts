@@ -21,7 +21,6 @@ export const handler = async (
     name: "ps.supabase.auth.token",
     value: data.session?.access_token as string,
     maxAge: data.session?.expires_in,
-    httpOnly: true,
     sameSite: "Lax",
     path: "/",
     secure: true,
