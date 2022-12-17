@@ -1,4 +1,4 @@
-import { createClient, Provider } from "supabase";
+import { createClient } from "supabase";
 import "https://deno.land/x/dotenv/load.ts";
 
 export const supabaseClient = createClient(

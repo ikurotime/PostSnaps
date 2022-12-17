@@ -32,6 +32,20 @@ export const defaultContent = {
     ],
   },
 };
+const getImageFile = (canvas: any) =>
+  //convert to base64 string
+  new Promise((resolve) => {
+    canvas.toBlob(function (blob: Blob) {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = function () {
+        const base64data = reader.result;
+        console.log(base64data);
+        resolve(base64data);
+      };
+    });
+  });
+
 const saveScreenshot = (canvas: any) => {
   const fileName = "postsnap";
   const link = document.createElement("a");
@@ -54,12 +68,41 @@ const copyToClipboard = (canvas: any) => {
       ]);
   });
 };
-export const getImage = (captureElement: Ref<HTMLDivElement>, type: string) => {
-  if (captureElement && captureElement.current) {
-    html2canvas(captureElement.current, {
+export const getImage = (
+  captureElement: Ref<HTMLDivElement>,
+  type?: string,
+) => {
+  /* if (captureElement && captureElement.current) {
+    return html2canvas(captureElement.current, {
       allowTaint: true,
       backgroundColor: null,
       useCORS: true,
-    }).then(type === "save" ? saveScreenshot : copyToClipboard);
-  }
+    }).then((canvas: any) => {
+      if (type === "save") {
+        saveScreenshot(canvas);
+      } else if (type === "copy") {
+        copyToClipboard(canvas);
+      } else {
+        return getImageFile(canvas);
+      }
+    });
+  } */
+  //englobe the code above in a promise
+  return new Promise((resolve) => {
+    if (captureElement && captureElement.current) {
+      html2canvas(captureElement.current, {
+        allowTaint: true,
+        backgroundColor: null,
+        useCORS: true,
+      }).then((canvas: any) => {
+        if (type === "save") {
+          saveScreenshot(canvas);
+        } else if (type === "copy") {
+          copyToClipboard(canvas);
+        } else {
+          resolve(getImageFile(canvas));
+        }
+      });
+    }
+  });
 };

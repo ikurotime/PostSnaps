@@ -4,30 +4,14 @@ import { asset } from "$fresh/src/runtime/utils.ts";
 import HomeLayout from "../islands/HomeLayout.tsx";
 import { State } from "./_middleware.tsx";
 import { User } from "supabase";
-import HomeContent from "../components/HomeContent.tsx";
-import { supabaseClient } from "../supabase.ts";
+import FavoriteLayout from "../islands/FavoriteLayout.tsx";
 
-export async function getTweetData(statusID: string) {
-  return await fetch("/api/get-tweet-info", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      statusID: statusID,
-    }),
-  }).then((res) => res.json());
-}
 type Data = {
-  tweetId: string;
   user: User | null;
 };
 export const handler: Handlers<Data, State> = {
-  GET(req, ctx) {
-    const params = new URL(req.url);
-    const tweetId = params.searchParams.get("tweetId") || "";
+  GET(_req, ctx) {
     const data = {
-      tweetId,
       user: ctx.state.auth?.user,
       liked_post: ctx.state.liked_post,
     };
@@ -69,11 +53,7 @@ export default function Home({ data }: PageProps) {
           href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
         />
       </Head>
-      <HomeLayout
-        user={data.user}
-        liked_post={data.liked_post}
-      />
-
+      <FavoriteLayout user={data.user} />
       <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     </>
   );

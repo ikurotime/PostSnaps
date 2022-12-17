@@ -1,6 +1,6 @@
-import { useContext } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import { AppContext } from "../context/AppContext.ts";
-
+import { User } from "supabase";
 import { getImage } from "../utils.ts";
 
 const STYLES = [
@@ -13,7 +13,10 @@ const STYLES = [
   "bg-gradient-to-r from-red-200 via-red-300 to-blue-600 ",
 ];
 
-export default function BottomBar() {
+export default function BottomBar(
+  { user, liked_post }: { user: User; liked_post: boolean },
+) {
+  const [liked, setLiked] = useState(liked_post);
   const {
     captureElement,
     isOpaque,
@@ -21,7 +24,6 @@ export default function BottomBar() {
     padding,
     selectedStyle,
     dispatch,
-    user,
   } = useContext(
     AppContext,
   );
@@ -31,9 +33,14 @@ export default function BottomBar() {
       dispatch({ type: "SET_TOAST", payload: false });
     }, 2000);
   };
-  const handleFavorite = () => {
+  const handleFavorite = async () => {
+    setLiked(!liked);
     const url = new URL(window.location.href);
     const tweetId = url.searchParams.get("tweetId");
+    let image;
+    if (liked === false) {
+      image = await getImage(captureElement);
+    }
     fetch("/api/favorite", {
       method: "POST",
       headers: {
@@ -41,10 +48,13 @@ export default function BottomBar() {
       },
       body: JSON.stringify({
         user_id: user?.id,
-        tweet_id: tweetId, //TODO get tweet id from url, send to backend, save to db, return to frontend
+        tweet_id: tweetId,
+        image,
+        link: window.location.href,
       }),
     });
   };
+
   return (
     <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[435px] flex justify-center gap-5 w-full p-2 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
       <button
@@ -121,15 +131,17 @@ export default function BottomBar() {
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
       <button
-        onClick={handleFavorite}
+        onClick={user ? handleFavorite : () => {
+          window?.location?.assign("/login");
+        }}
         type="button"
         data-tooltip-target="tooltip-fav"
         data-tooltip-placement="top"
-        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
+        class="flex justify-center items-center group w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
       >
         <svg
-          class="w-6 h-6"
-          fill="none"
+          class="w-6 h-6 group-hover:text-red-400"
+          fill={liked ? "currentColor" : "none"}
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"

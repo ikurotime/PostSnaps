@@ -101,6 +101,7 @@ export default function TweetContainer() {
               <p class="self-start whitespace-pre-line text-2xl">
                 {tweetContent?.data[0].text.split("https").shift()}
               </p>
+
               {tweetContent?.includes?.media?.length === 1 && (
                 <div class="grid grid-cols-1 grid-rows-1 place-items-center gap-1 ">
                   {tweetContent?.includes?.media?.map((content) => (
@@ -117,6 +118,16 @@ export default function TweetContainer() {
                     <img
                       src={content.url}
                       className="rounded-xl w-3/6 object-cover"
+                    />
+                  ))}
+                </div>
+              )}
+              {tweetContent?.includes?.media?.length === 3 && (
+                <div class="grid grid-cols-2 grid-rows-2 place-items-center gap-1 ">
+                  {tweetContent?.includes?.media?.map((content) => (
+                    <img
+                      src={content.url}
+                      className="rounded-xl w-5/6 object-cover"
                     />
                   ))}
                 </div>
