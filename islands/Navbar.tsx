@@ -72,12 +72,14 @@ export default function Navbar({ user }: { user?: User }) {
               </a>
             </li>
             <li>
-              <a
-                href="/favorites"
+              <button
+                onClick={() => {
+                  window.location.assign(user ? "/favorites" : "/login");
+                }}
                 class="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
               >
                 Favorites
-              </a>
+              </button>
             </li>
             {user
               ? (
