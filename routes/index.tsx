@@ -1,11 +1,9 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
+import { User } from "supabase";
 import HomeLayout from "../islands/HomeLayout.tsx";
 import { State } from "./_middleware.tsx";
-import { User } from "supabase";
-import HomeContent from "../components/HomeContent.tsx";
-import { supabaseClient } from "../supabase.ts";
 
 export async function getTweetData(statusID: string) {
   return await fetch("/api/get-tweet-info", {

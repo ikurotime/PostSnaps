@@ -1,9 +1,9 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
-import { State } from "./_middleware.tsx";
 import { User } from "supabase";
 import ExploreLayout from "../islands/ExploreLayout.tsx";
+import { State } from "./_middleware.tsx";
 
 type Data = {
   tweetId: string;

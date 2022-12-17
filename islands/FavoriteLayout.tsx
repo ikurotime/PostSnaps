@@ -1,11 +1,9 @@
-import Toast from "../components/Toast.tsx";
-
-import ContextProvider from "../components/ContextProvider.tsx";
-
-import Navbar from "./Navbar.tsx";
-import { User } from "supabase";
 import { useEffect, useState } from "preact/hooks";
+import { User } from "supabase";
+import ContextProvider from "../components/ContextProvider.tsx";
+import Toast from "../components/Toast.tsx";
 import { supabase } from "../publicSupabase.ts";
+import Navbar from "./Navbar.tsx";
 
 const FavoriteLayout = ({ user }: { user: User }) => {
   const [likedPost, setLikedPost] = useState<any[] | null>([]);

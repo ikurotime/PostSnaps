@@ -1,10 +1,9 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
-import HomeLayout from "../islands/HomeLayout.tsx";
-import { State } from "./_middleware.tsx";
 import { User } from "supabase";
 import FavoriteLayout from "../islands/FavoriteLayout.tsx";
+import { State } from "./_middleware.tsx";
 
 type Data = {
   user: User | null;

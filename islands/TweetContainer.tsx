@@ -13,8 +13,6 @@ export default function TweetContainer() {
     padding,
     isLogo,
     dispatch,
-    width,
-    height,
   } = useAppState();
   const ref = useRef<HTMLDivElement>(null);
   const [containerXY, setContainerXY] = useState({ x: 0, y: 0 });

@@ -1,7 +1,6 @@
-import Toast from "../components/Toast.tsx";
 import { User } from "supabase";
 import ContextProvider from "../components/ContextProvider.tsx";
-import HomeContent from "../components/HomeContent.tsx";
+import Toast from "../components/Toast.tsx";
 import Navbar from "./Navbar.tsx";
 
 const ExploreLayout = ({ user }: { user: User }) => {

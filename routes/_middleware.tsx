@@ -1,8 +1,8 @@
 // routes/_middleware.ts
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
-import { supabaseClient } from "../supabase.ts";
 import { getCookies } from "std/http/cookie.ts";
 import { User } from "supabase";
+import { supabaseClient } from "../supabase.ts";
 export interface State {
   auth: {
     user: User;

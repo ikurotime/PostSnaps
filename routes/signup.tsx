@@ -1,9 +1,9 @@
 import { Head } from "$fresh/runtime.ts";
-import { asset } from "$fresh/src/runtime/utils.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { asset } from "$fresh/src/runtime/utils.ts";
 import ContextProvider from "../components/ContextProvider.tsx";
-import SignUpComponent from "../islands/SignUpComponent.tsx";
 import Navbar from "../islands/Navbar.tsx";
+import SignUpComponent from "../islands/SignUpComponent.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {

@@ -1,6 +1,6 @@
 import { useContext, useState } from "preact/hooks";
-import { AppContext } from "../context/AppContext.ts";
 import { User } from "supabase";
+import { AppContext } from "../context/AppContext.ts";
 import { getImage } from "../utils.ts";
 
 const STYLES = [

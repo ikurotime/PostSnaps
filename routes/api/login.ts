@@ -1,6 +1,6 @@
-import { supabaseClient } from "./../../supabase.ts";
 import { HandlerContext } from "$fresh/server.ts";
 import { setCookie } from "std/http/cookie.ts";
+import { supabaseClient } from "./../../supabase.ts";
 export const handler = async (
   req: Request,
   _ctx: HandlerContext,

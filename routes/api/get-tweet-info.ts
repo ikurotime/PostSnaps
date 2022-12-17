@@ -1,6 +1,6 @@
 import { HandlerContext } from "$fresh/server.ts";
-
 import "https://deno.land/x/dotenv/load.ts";
+
 export const handler = async (
   _req: Request,
   _ctx: HandlerContext,
