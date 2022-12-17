@@ -6,7 +6,7 @@ export const handler = (
 ): Response => {
   const headers = new Headers();
   const url = new URL(req.url);
-  deleteCookie(req.headers, "ps.supabase.auth.token", {
+  deleteCookie(headers, "ps.supabase.auth.token", {
     path: "/",
     domain: url.hostname,
   });
