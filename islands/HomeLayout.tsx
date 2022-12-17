@@ -1,21 +1,6 @@
-import {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "preact/hooks";
-
 import Toast from "../components/Toast.tsx";
-
-import Navbar from "../islands/Navbar.tsx";
-
-import { AppContext, AppReducer, initialState } from "../context/AppContext.ts";
-
-import { AppProps } from "$fresh/server.ts";
+import { User } from "supabase";
 import ContextProvider from "../components/ContextProvider.tsx";
-import { ComponentChild, ComponentChildren, toChildArray } from "preact";
-import Home from "../routes/index.tsx";
 import HomeContent from "../components/HomeContent.tsx";
 
 export type UserData = {
@@ -38,25 +23,18 @@ export type MediaType = {
   type: string;
   url: string;
 };
-type Content = {
-  data: TweetData[];
-  includes: {
-    users: UserData[];
-    media: MediaType[];
-  };
-};
 
-const Layout = () => {
+const HomeLayout = ({ user }: { user: User }) => {
   return (
     <ContextProvider>
       <div class="min-h-screen p-4 mx-auto max-w-screen-md h-full">
         <div class="w-full min-h-screen m-auto flex flex-col justify-center py-14">
           <Toast text="Copied to clipboard" />
-          <HomeContent />
+          <HomeContent user={user} />
         </div>
       </div>
     </ContextProvider>
   );
 };
 
-export default Layout;
+export default HomeLayout;

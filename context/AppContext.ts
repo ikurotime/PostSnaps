@@ -1,5 +1,5 @@
-import { defaultContent } from "./../utils.ts";
 import { createContext } from "preact";
+import { defaultContent } from "./../utils.ts";
 export const initialState = {
   user: null,
   isToastShown: false,

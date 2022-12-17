@@ -1,4 +1,3 @@
-import { Ref } from "preact";
 import { useContext } from "preact/hooks";
 import { AppContext } from "../context/AppContext.ts";
 

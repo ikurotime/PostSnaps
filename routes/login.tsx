@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
 import ContextProvider from "../components/ContextProvider.tsx";
-import LoginComponent from "../components/LoginComponent.tsx";
+import LoginComponent from "../islands/LoginComponent.tsx";
 import Navbar from "../islands/Navbar.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 

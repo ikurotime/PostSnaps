@@ -1,6 +1,4 @@
-type Props = {};
-
-export default function LoginButtons(_: Props) {
+export default function LoginButtons() {
   return (
     <div class="hidden sm:block inline-flex rounded-md shadow-sm">
       <a

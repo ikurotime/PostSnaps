@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { useAppState } from "../components/ContextProvider.tsx";
-import { AppContext } from "../context/AppContext.ts";
 import { getTweetData } from "../routes/index.tsx";
 
 export default function Input() {

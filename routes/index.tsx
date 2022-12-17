@@ -1,16 +1,10 @@
 import { Head } from "$fresh/runtime.ts";
-import { asset } from "$fresh/src/runtime/utils.ts";
-//import Layout from "../islands/Layout.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { asset } from "$fresh/src/runtime/utils.ts";
+import HomeLayout from "../islands/HomeLayout.tsx";
+import { State } from "./_middleware.tsx";
+import { User } from "supabase";
 import HomeContent from "../components/HomeContent.tsx";
-import TweetContainer from "../islands/TweetContainer.tsx";
-import BottomBar from "../islands/BottomBar.tsx";
-import Layout from "../islands/Layout.tsx";
-import ContextProvider, {
-  useAppState,
-} from "../components/ContextProvider.tsx";
-import Navbar from "../islands/Navbar.tsx";
-import { useEffect } from "https://esm.sh/v95/preact@10.11.0/hooks/src/index";
 
 export async function getTweetData(statusID: string) {
   return await fetch("/api/get-tweet-info", {
@@ -23,12 +17,16 @@ export async function getTweetData(statusID: string) {
     }),
   }).then((res) => res.json());
 }
-
-export const handler: Handlers = {
+type Data = {
+  tweetId: string;
+  user: User | null;
+};
+export const handler: Handlers<Data, State> = {
   GET(req, ctx) {
     const params = new URL(req.url);
     const tweetId = params.searchParams.get("tweetId") || "";
-    return ctx.render(tweetId);
+    const data = { tweetId, user: ctx.state.auth?.user };
+    return ctx.render(data);
   },
 };
 export default function Home({ data }: PageProps) {
@@ -66,7 +64,10 @@ export default function Home({ data }: PageProps) {
           href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css"
         />
       </Head>
-      <Layout />
+      <HomeLayout
+        user={data.user}
+        Component={(user) => <HomeContent user={user} />}
+      />
 
       <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     </>

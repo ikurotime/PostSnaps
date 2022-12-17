@@ -1,7 +1,7 @@
 import { Ref } from "preact";
-import TwitterIcon from "../components/TwitterIcon.tsx";
 import { useEffect, useRef } from "preact/hooks";
 import { useAppState } from "../components/ContextProvider.tsx";
+import TwitterIcon from "../components/TwitterIcon.tsx";
 import { getTweetData } from "../routes/index.tsx";
 
 export default function TweetContainer() {
@@ -26,6 +26,7 @@ export default function TweetContainer() {
     const statusID = urlParams.get("tweetId");
     if (statusID) {
       getTweetData(statusID).then((res) => {
+        console.log(res);
         dispatch({ type: "SET_TWEET_CONTENT", payload: res });
         dispatch({ type: "SET_TWEET_LOADING", payload: false });
       });
@@ -90,9 +91,9 @@ export default function TweetContainer() {
               <p class="self-start whitespace-pre-line text-2xl">
                 {tweetContent?.data[0].text.split("https").shift()}
               </p>
-              {tweetContent?.includes.media[0] && (
+              {tweetContent?.includes?.media?.[0] && (
                 <img
-                  src={tweetContent?.includes.media[0].url}
+                  src={tweetContent?.includes?.media?.[0].url}
                   className="rounded-xl w-3/6 object-cover"
                 />
               )}

@@ -1,15 +1,12 @@
-import { useEffect } from "preact/hooks";
+import { User } from "supabase";
 import BottomBar from "../islands/BottomBar.tsx";
-import Layout from "../islands/Layout.tsx";
-//import { useAppState } from "../islands/Layout.tsx";
-import TweetContainer from "../islands/TweetContainer.tsx";
 import Navbar from "../islands/Navbar.tsx";
-import ContextProvider from "../components/ContextProvider.tsx";
+import TweetContainer from "../islands/TweetContainer.tsx";
 
-export default function HomeContent() {
+export default function HomeContent({ user }: { user: User }) {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <TweetContainer />
       <BottomBar />
     </>
