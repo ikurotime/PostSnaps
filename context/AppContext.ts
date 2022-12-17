@@ -1,16 +1,20 @@
 import { createContext } from "preact";
 import { defaultContent } from "./../utils.ts";
 export const initialState = {
-  user: null,
+  user: {
+    id: "",
+  },
   isToastShown: false,
   tweetContent: defaultContent,
-  tweetLoading: true,
+  tweetLoading: false,
   selectedStyle: "style-1",
   isLogo: true,
   padding: 5,
   isOpaque: false,
   captureElement: { current: null },
   dispatch: (action: any) => {},
+  width: 427,
+  height: 274,
 };
 type InitialStateType = typeof initialState;
 export const AppContext = createContext<InitialStateType>(initialState);
@@ -75,6 +79,18 @@ export const AppReducer = (state: any, action: any) => {
       return {
         ...state,
         tweetLoading: action.payload,
+      };
+    }
+    case "SET_WIDTH": {
+      return {
+        ...state,
+        width: action.payload,
+      };
+    }
+    case "SET_HEIGHT": {
+      return {
+        ...state,
+        height: action.payload,
       };
     }
 

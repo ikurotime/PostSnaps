@@ -18,7 +18,6 @@ export const handler: Handlers<Data, State> = {
   },
 };
 export default function Explore({ data }: PageProps) {
-  console.log(data);
   return (
     <>
       <Head>

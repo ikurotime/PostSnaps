@@ -3,10 +3,16 @@ import Input from "./Input.tsx";
 
 export default function Navbar({ user }: { user?: User }) {
   const logout = () => {
-    // delete cookie
-    document.cookie = "ps.supabase.auth.token=; max-age=0; path=/";
-    // redirect to home
-    window.location.href = "/";
+    fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        window.location.href = "/";
+      }
+    });
   };
 
   return (
@@ -106,10 +112,7 @@ export default function Navbar({ user }: { user?: User }) {
                           </a>
                         </li>
                         <li>
-                          <a
-                            href="#"
-                            class="flex items-center py-2 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white"
-                          >
+                          <span class="flex items-center py-2 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white">
                             <svg
                               class="mr-2 w-4 h-4"
                               fill="none"
@@ -131,7 +134,7 @@ export default function Navbar({ user }: { user?: User }) {
                             >
                               Logout
                             </button>
-                          </a>
+                          </span>
                         </li>
                       </ul>
                     </div>

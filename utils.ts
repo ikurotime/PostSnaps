@@ -58,6 +58,7 @@ export const getImage = (captureElement: Ref<HTMLDivElement>, type: string) => {
   if (captureElement && captureElement.current) {
     html2canvas(captureElement.current, {
       allowTaint: true,
+      backgroundColor: null,
       useCORS: true,
     }).then(type === "save" ? saveScreenshot : copyToClipboard);
   }

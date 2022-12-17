@@ -8,11 +8,12 @@ import * as $1 from "./routes/_middleware.tsx";
 import * as $2 from "./routes/api/get-tweet-info.ts";
 import * as $3 from "./routes/api/joke.ts";
 import * as $4 from "./routes/api/login.ts";
-import * as $5 from "./routes/api/signup.ts";
-import * as $6 from "./routes/explore.tsx";
-import * as $7 from "./routes/index.tsx";
-import * as $8 from "./routes/login.tsx";
-import * as $9 from "./routes/signup.tsx";
+import * as $5 from "./routes/api/logout.ts";
+import * as $6 from "./routes/api/signup.ts";
+import * as $7 from "./routes/explore.tsx";
+import * as $8 from "./routes/index.tsx";
+import * as $9 from "./routes/login.tsx";
+import * as $10 from "./routes/signup.tsx";
 import * as $$0 from "./islands/BottomBar.tsx";
 import * as $$1 from "./islands/ExploreLayout.tsx";
 import * as $$2 from "./islands/HomeLayout.tsx";
@@ -29,11 +30,12 @@ const manifest = {
     "./routes/api/get-tweet-info.ts": $2,
     "./routes/api/joke.ts": $3,
     "./routes/api/login.ts": $4,
-    "./routes/api/signup.ts": $5,
-    "./routes/explore.tsx": $6,
-    "./routes/index.tsx": $7,
-    "./routes/login.tsx": $8,
-    "./routes/signup.tsx": $9,
+    "./routes/api/logout.ts": $5,
+    "./routes/api/signup.ts": $6,
+    "./routes/explore.tsx": $7,
+    "./routes/index.tsx": $8,
+    "./routes/login.tsx": $9,
+    "./routes/signup.tsx": $10,
   },
   islands: {
     "./islands/BottomBar.tsx": $$0,

@@ -23,7 +23,6 @@ export const handler = async (
     maxAge: data.session?.expires_in,
     httpOnly: true,
     sameSite: "Lax",
-    domain: url.hostname,
     path: "/",
     secure: true,
   });

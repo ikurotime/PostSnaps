@@ -18,7 +18,7 @@ export default function SignUpComponent() {
       body: JSON.stringify(formData),
     }).then((res) => {
       if (res.status === 200) {
-        window.location.href = "/app";
+        window.location.href = "/";
       }
     });
   };

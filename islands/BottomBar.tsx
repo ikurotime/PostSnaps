@@ -21,6 +21,7 @@ export default function BottomBar() {
     padding,
     selectedStyle,
     dispatch,
+    user,
   } = useContext(
     AppContext,
   );
@@ -30,12 +31,26 @@ export default function BottomBar() {
       dispatch({ type: "SET_TOAST", payload: false });
     }, 2000);
   };
+  const handleFavorite = () => {
+    const url = new URL(window.location.href);
+    const tweetId = url.searchParams.get("tweetId");
+    fetch("/api/favorite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user?.id,
+        tweet_id: tweetId, //TODO get tweet id from url, send to backend, save to db, return to frontend
+      }),
+    });
+  };
   return (
-    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[365px] flex justify-center gap-5 w-full p-2 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
+    <div class="fixed bottom-10 left-0 right-0 mx-auto max-w-[435px] flex justify-center gap-5 w-full p-2 border rounded-lg shadow-md bg-gray-800 border-gray-700 ">
       <button
         data-popover-target="popover-no-arrow"
         type="button"
-        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
       >
         <div
           class={"h-8 w-8 rounded-full " + selectedStyle}
@@ -65,13 +80,20 @@ export default function BottomBar() {
           ))}
         </div>
       </div>
-
+      <div
+        id="tooltip-fav"
+        role="tooltip"
+        class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
+      >
+        Save as favourite
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
       <button
         onClick={() => getImage(captureElement, "save")}
         type="button"
         data-tooltip-target="tooltip-download"
         data-tooltip-placement="top"
-        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
       >
         <svg
           aria-hidden="true"
@@ -89,6 +111,7 @@ export default function BottomBar() {
         </svg>
         <span class="sr-only">Download</span>
       </button>
+
       <div
         id="tooltip-download"
         role="tooltip"
@@ -98,6 +121,31 @@ export default function BottomBar() {
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
       <button
+        onClick={handleFavorite}
+        type="button"
+        data-tooltip-target="tooltip-fav"
+        data-tooltip-placement="top"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          >
+          </path>
+        </svg>
+        <span class="sr-only">Save as favourite</span>
+      </button>
+
+      <button
         onClick={() => {
           getImage(captureElement, "copy");
           handleToast();
@@ -105,7 +153,7 @@ export default function BottomBar() {
         type="button"
         data-tooltip-target="tooltip-copy"
         data-tooltip-placement="top"
-        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
       >
         <svg
           aria-hidden="true"
@@ -137,7 +185,7 @@ export default function BottomBar() {
         type="button"
         data-tooltip-target="tooltip-copy-link"
         data-tooltip-placement="top"
-        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400"
+        class="flex justify-center items-center w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400 hover:scale-105 "
       >
         <svg
           class="w-6 h-6"
@@ -174,7 +222,7 @@ export default function BottomBar() {
             <li>
               <div class="flex items-center py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white">
                 <input
-                  id="default-checkbox"
+                  id="logo-checkbox"
                   type="checkbox"
                   value=""
                   checked={isLogo}
@@ -183,7 +231,7 @@ export default function BottomBar() {
                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
-                  for="default-checkbox"
+                  for="logo-checkbox"
                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Logo
@@ -241,7 +289,7 @@ export default function BottomBar() {
           data-dial-toggle="speed-dial-menu-dropdown-alternative"
           aria-controls="speed-dial-menu-dropdown-alternative"
           aria-expanded="false"
-          class="flex justify-center items-center ml-auto w-14 h-14 text-white bg-blue-700 rounded-full hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800"
+          class="flex justify-center items-center ml-auto w-14 h-14 text-white bg-blue-700 rounded-full hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800  hover:scale-105 "
         >
           <svg
             aria-hidden="true"

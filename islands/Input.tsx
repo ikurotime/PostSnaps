@@ -62,7 +62,7 @@ export default function Input() {
         />
         <button
           type="submit"
-          class="text-white absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+          class="text-white absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800  hover:scale-105  transition duration-300 ease-in-out"
         >
           Search
         </button>

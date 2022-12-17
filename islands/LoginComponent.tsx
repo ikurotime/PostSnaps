@@ -18,7 +18,7 @@ export default function LoginComponent() {
       body: JSON.stringify(formData),
     }).then((res) => {
       if (res.status === 200) {
-        window.location.href = "/app";
+        window.location.href = "/";
       }
     });
   };
@@ -93,7 +93,7 @@ export default function LoginComponent() {
             </div>
 
             <hr />
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   for="email"

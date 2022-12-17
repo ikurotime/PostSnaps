@@ -8,6 +8,5 @@ export const signInWith = async (provider: Provider) => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
   });
-  console.log(data, error);
   return { data, error };
 };
