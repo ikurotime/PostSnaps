@@ -41,26 +41,26 @@ export default function Home({ data }: PageProps) {
         <meta name="og:title" content="PostSnaps" />
         <meta
           name="og:description"
-          content="Create beatiful screenshots of any tweet"
+          content="Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter. Whether you want to share a tweet from a celebrity, a politician, or a friend, PostSnaps makes it easy to capture and share the tweet. So why wait? Try PostSnaps today and start sharing your favorite tweets in style!"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image"
           content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
-            data}
+            data.tweetId}
         />
         <meta name="twitter:site" content="@ikurotime" />
         <meta name="twitter:title" content="PostSnaps" />
         <meta
           name="twitter:description"
-          content="Create beatiful screenshots of any tweet"
+          content="Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter. Whether you want to share a tweet from a celebrity, a politician, or a friend, PostSnaps makes it easy to capture and share the tweet. So why wait? Try PostSnaps today and start sharing your favorite tweets in style!"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image:src"
           content={"https://nitjkhytnaowbkuggtwa.functions.supabase.co/ogImage/?tweetId=" +
-            data}
+            data.tweetId}
         />
         <link
           rel="stylesheet"
