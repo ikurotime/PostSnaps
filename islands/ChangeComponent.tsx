@@ -42,6 +42,10 @@ export default function ChangeComponent({ user }: { user: User }) {
             payload: true,
           });
           setLoading(false);
+          setTimeout(() => {
+            dispatch({ type: "SET_TOAST", payload: false });
+          }, 3000);
+          return;
         } else {
           const data = await res.json();
           dispatch({
@@ -57,6 +61,9 @@ export default function ChangeComponent({ user }: { user: User }) {
             payload: true,
           });
           setLoading(false);
+          setTimeout(() => {
+            dispatch({ type: "SET_TOAST", payload: false });
+          }, 3000);
           return;
         }
       });

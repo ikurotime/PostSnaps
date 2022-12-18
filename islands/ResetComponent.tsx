@@ -33,6 +33,9 @@ export default function ResetComponent() {
           payload: true,
         });
         setLoading(false);
+        setTimeout(() => {
+          dispatch({ type: "SET_TOAST", payload: false });
+        }, 3000);
         return;
       }
       dispatch({
@@ -48,6 +51,9 @@ export default function ResetComponent() {
         payload: true,
       });
       setLoading(false);
+      setTimeout(() => {
+        dispatch({ type: "SET_TOAST", payload: false });
+      }, 3000);
     });
   };
   return (

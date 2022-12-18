@@ -130,7 +130,7 @@ export default function Navbar({ user }: { user?: User }) {
                         </li>
                       </ul>
                     </div>
-                    <div class="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">
+                    <div class="block py-2 pl-3 pr-4 rounded hidden md:block md:hover:bg-transparent md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">
                       <span
                         data-dial-toggle="speed-dial-menu-dropdown"
                         aria-controls="speed-dial-menu-dropdown"
@@ -139,6 +139,11 @@ export default function Navbar({ user }: { user?: User }) {
                         Settings
                       </span>
                     </div>
+                    <a href="/change-password">
+                      <div class="block py-2 pl-3 pr-4 rounded md:hidden md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">
+                        Change Password
+                      </div>
+                    </a>
                   </div>
                 </li>
               )
