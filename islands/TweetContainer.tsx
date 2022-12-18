@@ -41,7 +41,6 @@ export default function TweetContainer() {
           statusID,
         },
       }).then((res) => {
-        console.log(res);
         if (res?.error) {
           dispatch({ type: "SET_TOAST_TYPE", payload: "error" });
           dispatch({ type: "SET_TOAST_MESSAGE", payload: "Invalid Tweet URL" });
