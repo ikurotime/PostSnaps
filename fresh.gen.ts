@@ -14,7 +14,8 @@ import * as $7 from "./routes/explore.tsx";
 import * as $8 from "./routes/favorites.tsx";
 import * as $9 from "./routes/index.tsx";
 import * as $10 from "./routes/login.tsx";
-import * as $11 from "./routes/signup.tsx";
+import * as $11 from "./routes/reset-password.tsx";
+import * as $12 from "./routes/signup.tsx";
 import * as $$0 from "./islands/BottomBar.tsx";
 import * as $$1 from "./islands/ExploreLayout.tsx";
 import * as $$2 from "./islands/FavoriteLayout.tsx";
@@ -38,7 +39,8 @@ const manifest = {
     "./routes/favorites.tsx": $8,
     "./routes/index.tsx": $9,
     "./routes/login.tsx": $10,
-    "./routes/signup.tsx": $11,
+    "./routes/reset-password.tsx": $11,
+    "./routes/signup.tsx": $12,
   },
   islands: {
     "./islands/BottomBar.tsx": $$0,

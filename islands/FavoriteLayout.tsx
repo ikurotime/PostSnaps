@@ -58,7 +58,7 @@ const FavoriteLayout = ({ user }: { user: User }) => {
                     <div class="grid place-items-center justify-center gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                       {likedPost.map((post) => (
                         <div class="hover:scale-105 transition-all hover:cursor-pointer gap-3">
-                          <a href={post.link}>
+                          <a href={window.location.hostname + post.link}>
                             <img
                               src={post.image}
                               class="w-72 h-auto object-cover"
