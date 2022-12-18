@@ -11,9 +11,13 @@ const FavoriteLayout = ({ user }: { user: User }) => {
   const [likedPost, setLikedPost] = useState<any[] | null>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    supabase.from("liked_posts").select("*").eq("user_id", user?.id)
+    supabase.from("liked_posts").select("*,content:posts(post_id,image)").eq(
+      "user_id",
+      user?.id,
+    )
       .then(
         (res) => {
+          console.log(res);
           setLikedPost(res.data);
           setLoading(false);
         },
@@ -24,7 +28,7 @@ const FavoriteLayout = ({ user }: { user: User }) => {
     <ContextProvider>
       <div class="min-h-screen p-4 mx-auto max-w-screen-xl h-full">
         <div class="w-full min-h-screen m-auto flex flex-col justify-center py-14">
-          <Toast text="Copied to clipboard" />
+          <Toast />
           <Navbar user={user} />
           <div class="flex flex-col min-h-[95vh] bg-gray-900 rounded-lg p-5 my-3">
             <h1 class="text-4xl text-white font-bold my-2">Favorites</h1>
@@ -36,7 +40,7 @@ const FavoriteLayout = ({ user }: { user: User }) => {
                       <div class="hover:scale-105 transition-all hover:cursor-pointer gap-3">
                         <a href={post.link}>
                           <img
-                            src={post.image}
+                            src={post.content.image}
                             class="w-72 h-auto object-cover"
                           />
                         </a>

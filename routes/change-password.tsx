@@ -1,13 +1,31 @@
 import { Head } from "$fresh/runtime.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
-import ResetLayout from "../islands/ResetLayout.tsx";
-
-export default function ResetPassword() {
+import { User } from "supabase";
+import ChangeLayout from "../islands/ChangeLayout.tsx";
+import { State } from "./_middleware.tsx";
+type Data = {
+  tweetId: string;
+  user: User | null;
+};
+export const handler: Handlers<Data, State> = {
+  GET(req, ctx) {
+    const params = new URL(req.url);
+    const tweetId = params.searchParams.get("tweetId") || "";
+    const data = {
+      tweetId,
+      user: ctx.state.auth?.user,
+      liked_post: ctx.state.liked_post,
+    };
+    return ctx.render(data);
+  },
+};
+export default function ChangePassword({ data }: PageProps) {
   return (
     <>
       <Head>
-        <title>PostSnaps - Reset Password</title>
-        <meta name="og:title" content="PostSnaps - Reset Password" />
+        <title>PostSnaps - Change Password</title>
+        <meta name="og:title" content="PostSnaps - Change Password" />
         <meta
           name="keywords"
           content="screenshot tweets, tweet capture, custom tweet screenshots, share tweets, social media sharing, twitter moments, celebrity tweets, politician tweets, friend tweets, memorable tweets, funny tweets, inspiring tweets, deno, deno fresh, supabase, supabase functions"
@@ -35,7 +53,7 @@ export default function ResetPassword() {
         />
         <link rel="stylesheet" href={asset("../globals.css")} />
       </Head>
-      <ResetLayout />
+      <ChangeLayout user={data.user} />
     </>
   );
 }

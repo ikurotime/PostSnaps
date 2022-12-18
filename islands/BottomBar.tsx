@@ -96,6 +96,7 @@ export default function BottomBar(
         />
         <TooltipButton
           Icon={<FavoriteIcon liked={liked} />}
+          disabled={window?.location?.search === ""}
           onClick={user ? handleFavorite : () => {
             window?.location?.assign("/login");
           }}

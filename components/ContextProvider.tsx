@@ -15,7 +15,11 @@ export default function ContextProvider(
     if (access_token) {
       document.cookie =
         `ps.supabase.auth.token=${access_token}; max-age=${expires_in}; path=/; SameSite=Lax; Secure=true; domain=${window.location.hostname}`;
-      window.location.href = "/";
+      if (window.location.pathname == "/change-password") {
+        window.location.href = "/change-password";
+      } else {
+        window.location.href = "/";
+      }
     }
   }, []);
   return (

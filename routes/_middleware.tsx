@@ -18,7 +18,8 @@ export async function handler(
 ) {
   const url = new URL(req.url);
   if (
-    ["/", "/login", "/signup", "/explore", "/favorites"].includes(url.pathname)
+    ["/", "/login", "/signup", "/explore", "/favorites", "/change-password"]
+      .includes(url.pathname)
   ) {
     const url = new URL(req.url);
 
