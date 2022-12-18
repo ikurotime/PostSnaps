@@ -41,6 +41,9 @@ export default function LoginComponent() {
           type: "SET_TOAST",
           payload: true,
         });
+        setTimeout(() => {
+          dispatch({ type: "SET_TOAST", payload: false });
+        }, 3000);
       }
     });
   };

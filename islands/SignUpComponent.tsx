@@ -33,7 +33,9 @@ export default function SignUpComponent() {
         payload: true,
       });
       setLoading(false);
-
+      setTimeout(() => {
+        dispatch({ type: "SET_TOAST", payload: false });
+      }, 3000);
       return;
     }
     if (formData.username.length < 3) {
@@ -46,6 +48,9 @@ export default function SignUpComponent() {
         payload: true,
       });
       setLoading(false);
+      setTimeout(() => {
+        dispatch({ type: "SET_TOAST", payload: false });
+      }, 3000);
       return;
     }
     if (formData.password.length < 6) {
@@ -58,6 +63,9 @@ export default function SignUpComponent() {
         payload: true,
       });
       setLoading(false);
+      setTimeout(() => {
+        dispatch({ type: "SET_TOAST", payload: false });
+      }, 3000);
       return;
     }
     fetch("/api/signup", {
@@ -80,6 +88,9 @@ export default function SignUpComponent() {
           payload: true,
         });
         setLoading(false);
+        setTimeout(() => {
+          dispatch({ type: "SET_TOAST", payload: false });
+        }, 3000);
       }
     });
   };
