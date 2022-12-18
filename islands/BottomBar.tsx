@@ -46,17 +46,13 @@ export default function BottomBar(
     } else {
       dispatch({ type: "SET_LIKES", payload: likes - 1 });
     }
-    fetch("/api/favorite", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: user?.id,
-        tweet_id: tweetId,
+    supabase.functions.invoke("addBase64ImageToStorage", {
+      body: {
         image,
+        tweet_id: tweetId,
+        user_id: user?.id,
         link: "/" + window.location.search,
-      }),
+      },
     });
   };
   useEffect(() => {

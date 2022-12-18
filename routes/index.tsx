@@ -5,7 +5,7 @@ import { User } from "supabase";
 import HomeLayout from "../islands/HomeLayout.tsx";
 import { State } from "./_middleware.tsx";
 
-export async function getTweetData(statusID: string) {
+/* export async function getTweetData(statusID: string) {
   return await fetch("/api/get-tweet-info", {
     method: "POST",
     headers: {
@@ -15,7 +15,7 @@ export async function getTweetData(statusID: string) {
       statusID: statusID,
     }),
   }).then((res) => res.json());
-}
+} */
 type Data = {
   tweetId: string;
   user: User | null;

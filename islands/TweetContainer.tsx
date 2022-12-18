@@ -5,7 +5,8 @@ import { Spinner } from "../components/Spinner.tsx";
 import TweetAttatchments from "../components/TweetAttatchments.tsx";
 import TweetMetrics from "../components/TweetMetrics.tsx";
 import TwitterIcon from "../components/TwitterIcon.tsx";
-import { getTweetData } from "../routes/index.tsx";
+import { supabase } from "../publicSupabase.ts";
+//import { getTweetData } from "../routes/index.tsx";
 
 export default function TweetContainer() {
   const {
@@ -35,8 +36,24 @@ export default function TweetContainer() {
     const urlParams = new URLSearchParams(window.location.search);
     const statusID = urlParams.get("tweetId");
     if (statusID) {
-      getTweetData(statusID).then((res) => {
-        dispatch({ type: "SET_TWEET_CONTENT", payload: res });
+      supabase.functions.invoke("get-tweet-info", {
+        body: {
+          statusID,
+        },
+      }).then((res) => {
+        console.log(res);
+        if (res?.error) {
+          dispatch({ type: "SET_TOAST_TYPE", payload: "error" });
+          dispatch({ type: "SET_TOAST_MESSAGE", payload: "Invalid Tweet URL" });
+          dispatch({ type: "SET_TOAST", payload: true });
+          dispatch({ type: "SET_TWEET_LOADING", payload: false });
+          history.pushState({}, "", "/");
+          setTimeout(() => {
+            dispatch({ type: "SET_TOAST", payload: false });
+          }, 3000);
+          return;
+        }
+        dispatch({ type: "SET_TWEET_CONTENT", payload: res.data });
         dispatch({ type: "SET_TWEET_LOADING", payload: false });
       });
     } else {
@@ -59,15 +76,15 @@ export default function TweetContainer() {
             <div className="flex justify-between w-full">
               <div className="flex flex-row justify-start gap-4 w-full">
                 <img
-                  src={tweetContent?.includes.users[0].profile_image_url}
+                  src={tweetContent?.includes?.users?.[0].profile_image_url}
                   className="rounded-full w-12 h-12"
                 />
                 <div className="flex flex-col">
                   <span class="text-xl font-semibold">
-                    {tweetContent?.includes.users[0].name}
+                    {tweetContent?.includes?.users?.[0].name}
                   </span>
                   <span class="text-base text-gray-700">
-                    @{tweetContent?.includes.users[0].username}
+                    @{tweetContent?.includes?.users?.[0].username}
                   </span>
                 </div>
               </div>
@@ -75,13 +92,13 @@ export default function TweetContainer() {
             </div>
 
             <p class="self-start whitespace-pre-line text-2xl">
-              {tweetContent?.data[0].text.split("https").shift()}
+              {tweetContent?.data?.[0].text.split("https").shift()}
             </p>
 
             <TweetAttatchments />
 
             <div className="flex self-start gap-2">
-              {tweetContent?.data[0]?.created_at && (
+              {tweetContent?.data?.[0]?.created_at && (
                 <span class="text-gray-700">
                   {new Date(tweetContent?.data[0].created_at)
                     .toLocaleString()}
