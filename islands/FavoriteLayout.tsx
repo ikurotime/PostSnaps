@@ -17,7 +17,6 @@ const FavoriteLayout = ({ user }: { user: User }) => {
     )
       .then(
         (res) => {
-          console.log(res);
           setLikedPost(res.data);
           setLoading(false);
         },
