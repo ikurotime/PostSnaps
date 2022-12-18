@@ -1,4 +1,4 @@
-export const FavoriteIcon = ({ liked }: { liked: boolean }) => (
+export const FavoriteIcon = ({ liked }: { liked?: boolean }) => (
   <svg
     class="w-6 h-6 group-hover:text-red-400"
     fill={liked ? "currentColor" : "none"}

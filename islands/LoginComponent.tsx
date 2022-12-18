@@ -1,9 +1,13 @@
 import { useState } from "preact/hooks";
+import { useAppState } from "../components/ContextProvider.tsx";
 import GithubIcon from "../components/GithubIcon.tsx";
 import { LoginForm } from "../components/LoginForm.tsx";
+import Toast from "../components/Toast.tsx";
 import TwitterIcon from "../components/TwitterIcon.tsx";
 import { signInWith } from "../publicSupabase.ts";
 export default function LoginComponent() {
+  const { dispatch } = useAppState();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,6 +17,7 @@ export default function LoginComponent() {
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    setLoading(true);
     fetch("/api/login", {
       method: "POST",
       headers: {
@@ -22,6 +27,20 @@ export default function LoginComponent() {
     }).then((res) => {
       if (res.status === 200) {
         window.location.href = "/";
+      } else {
+        setLoading(false);
+        dispatch({
+          type: "SET_TOAST_TYPE",
+          payload: "error",
+        });
+        dispatch({
+          type: "SET_TOAST_MESSAGE",
+          payload: "Invalid email or password",
+        });
+        dispatch({
+          type: "SET_TOAST",
+          payload: true,
+        });
       }
     });
   };
@@ -66,7 +85,9 @@ export default function LoginComponent() {
             </div>
 
             <hr />
+            <Toast />
             <LoginForm
+              loading={loading}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
             />

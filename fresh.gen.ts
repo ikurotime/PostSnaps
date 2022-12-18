@@ -14,17 +14,20 @@ import * as $7 from "./routes/explore.tsx";
 import * as $8 from "./routes/favorites.tsx";
 import * as $9 from "./routes/index.tsx";
 import * as $10 from "./routes/login.tsx";
-import * as $11 from "./routes/reset-password.tsx";
-import * as $12 from "./routes/signup.tsx";
+import * as $11 from "./routes/privacy-policy.tsx";
+import * as $12 from "./routes/reset-password.tsx";
+import * as $13 from "./routes/signup.tsx";
 import * as $$0 from "./islands/BottomBar.tsx";
 import * as $$1 from "./islands/ExploreLayout.tsx";
 import * as $$2 from "./islands/FavoriteLayout.tsx";
 import * as $$3 from "./islands/HomeLayout.tsx";
 import * as $$4 from "./islands/Input.tsx";
 import * as $$5 from "./islands/LoginComponent.tsx";
-import * as $$6 from "./islands/Navbar.tsx";
-import * as $$7 from "./islands/SignUpComponent.tsx";
-import * as $$8 from "./islands/TweetContainer.tsx";
+import * as $$6 from "./islands/LoginLayout.tsx";
+import * as $$7 from "./islands/Navbar.tsx";
+import * as $$8 from "./islands/SignUpComponent.tsx";
+import * as $$9 from "./islands/SignupLayout.tsx";
+import * as $$10 from "./islands/TweetContainer.tsx";
 
 const manifest = {
   routes: {
@@ -39,8 +42,9 @@ const manifest = {
     "./routes/favorites.tsx": $8,
     "./routes/index.tsx": $9,
     "./routes/login.tsx": $10,
-    "./routes/reset-password.tsx": $11,
-    "./routes/signup.tsx": $12,
+    "./routes/privacy-policy.tsx": $11,
+    "./routes/reset-password.tsx": $12,
+    "./routes/signup.tsx": $13,
   },
   islands: {
     "./islands/BottomBar.tsx": $$0,
@@ -49,9 +53,11 @@ const manifest = {
     "./islands/HomeLayout.tsx": $$3,
     "./islands/Input.tsx": $$4,
     "./islands/LoginComponent.tsx": $$5,
-    "./islands/Navbar.tsx": $$6,
-    "./islands/SignUpComponent.tsx": $$7,
-    "./islands/TweetContainer.tsx": $$8,
+    "./islands/LoginLayout.tsx": $$6,
+    "./islands/Navbar.tsx": $$7,
+    "./islands/SignUpComponent.tsx": $$8,
+    "./islands/SignupLayout.tsx": $$9,
+    "./islands/TweetContainer.tsx": $$10,
   },
   baseUrl: import.meta.url,
   config,

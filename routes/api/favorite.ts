@@ -43,6 +43,12 @@ export const handler = async (
     image: body.image,
     link: body.link,
   }]);
+  await supabaseClient.from("posts").insert([{
+    post_id: body.tweet_id,
+    image: body.image,
+    link: body.link,
+  }]);
+
   if (error) {
     return new Response(JSON.stringify({ message: error.message }), {
       status: 500,

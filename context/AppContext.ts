@@ -6,7 +6,7 @@ export const initialState = {
   },
   isToastShown: false,
   tweetContent: defaultContent,
-  tweetLoading: false,
+  tweetLoading: true,
   selectedStyle: "style-1",
   isLogo: true,
   padding: 5,
@@ -15,6 +15,9 @@ export const initialState = {
   dispatch: (action: any) => {},
   width: 427,
   height: 274,
+  likes: 0,
+  toast_message: "",
+  toast_type: "success",
 };
 type InitialStateType = typeof initialState;
 export const AppContext = createContext<InitialStateType>(initialState);
@@ -91,6 +94,24 @@ export const AppReducer = (state: any, action: any) => {
       return {
         ...state,
         height: action.payload,
+      };
+    }
+    case "SET_LIKES": {
+      return {
+        ...state,
+        likes: action.payload,
+      };
+    }
+    case "SET_TOAST_MESSAGE": {
+      return {
+        ...state,
+        toast_message: action.payload,
+      };
+    }
+    case "SET_TOAST_TYPE": {
+      return {
+        ...state,
+        toast_type: action.payload,
       };
     }
 

@@ -35,7 +35,6 @@ export default function TweetContainer() {
     const urlParams = new URLSearchParams(window.location.search);
     const statusID = urlParams.get("tweetId");
     if (statusID) {
-      dispatch({ type: "SET_TWEET_LOADING", payload: true });
       getTweetData(statusID).then((res) => {
         dispatch({ type: "SET_TWEET_CONTENT", payload: res });
         dispatch({ type: "SET_TWEET_LOADING", payload: false });
@@ -72,7 +71,7 @@ export default function TweetContainer() {
                   </span>
                 </div>
               </div>
-              {isLogo ? <TwitterIcon /> : null}
+              {isLogo ? <TwitterIcon className="w-10 h-10" /> : null}
             </div>
 
             <p class="self-start whitespace-pre-line text-2xl">

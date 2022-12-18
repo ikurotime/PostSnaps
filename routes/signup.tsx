@@ -1,9 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
-import ContextProvider from "../components/ContextProvider.tsx";
-import Navbar from "../islands/Navbar.tsx";
-import SignUpComponent from "../islands/SignUpComponent.tsx";
+import SignupLayout from "../islands/SignupLayout.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -46,10 +44,7 @@ export default function signup({ data }: PageProps) {
         />
         <link rel="stylesheet" href={asset("../globals.css")} />
       </Head>
-      <ContextProvider>
-        <Navbar />
-        <SignUpComponent />
-      </ContextProvider>
+      <SignupLayout />
     </>
   );
 }

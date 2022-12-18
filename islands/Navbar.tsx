@@ -14,9 +14,9 @@ export default function Navbar({ user }: { user?: User }) {
       }
     });
   };
-  console.log(user);
+
   return (
-    <nav class="fixed top-0 z-10 mx-auto left-0 right-0 border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-gray-800 transition-all">
+    <nav class="fixed top-0 z-10 mx-auto left-0 right-0 border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-gray-900 transition-all">
       <div class="container flex gap-3 flex-wrap items-center justify-between mx-auto">
         <a href="/" class="flex items-center">
           <span class="self-center hidden sm:block text-xl font-semibold whitespace-nowrap text-white">
@@ -26,7 +26,7 @@ export default function Navbar({ user }: { user?: User }) {
             PS
           </span>
         </a>
-        <div class="flex md:order-1 justify-center max-w-[500px] flex-1">
+        <div class="flex md:order-1 justify-center max-w-[500px] flex-1 gap-3">
           <Input />
           <button
             data-collapse-toggle="navbar-cta"
@@ -56,7 +56,7 @@ export default function Navbar({ user }: { user?: User }) {
           class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-cta"
         >
-          <ul class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 bg-gray-900 md:bg-gray-900 border-gray-700">
+          <ul class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
             <li>
               <a
                 href="/"
@@ -113,9 +113,7 @@ export default function Navbar({ user }: { user?: User }) {
                               >
                               </path>
                             </svg>
-                            <span class="text-sm font-medium">
-                              {user.user_metadata}
-                            </span>
+                            <span class="text-sm font-medium">Profile</span>
                           </a>
                         </li>
                         <li>

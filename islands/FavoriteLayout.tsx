@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { User } from "supabase";
 import ContextProvider from "../components/ContextProvider.tsx";
+import Footer from "../components/Footer.tsx";
 import { Spinner } from "../components/Spinner.tsx";
 import Toast from "../components/Toast.tsx";
 import { supabase } from "../publicSupabase.ts";
@@ -33,7 +34,7 @@ const FavoriteLayout = ({ user }: { user: User }) => {
                   <div class="grid place-items-center justify-center gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {likedPost.map((post) => (
                       <div class="hover:scale-105 transition-all hover:cursor-pointer gap-3">
-                        <a href={window.location.hostname + post.link}>
+                        <a href={post.link}>
                           <img
                             src={post.image}
                             class="w-72 h-auto object-cover"
@@ -58,6 +59,7 @@ const FavoriteLayout = ({ user }: { user: User }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </ContextProvider>
   );
 };
