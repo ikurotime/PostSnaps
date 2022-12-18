@@ -14,13 +14,16 @@ export default function Navbar({ user }: { user?: User }) {
       }
     });
   };
-
+  console.log(user);
   return (
     <nav class="fixed top-0 z-10 mx-auto left-0 right-0 border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-gray-800 transition-all">
       <div class="container flex gap-3 flex-wrap items-center justify-between mx-auto">
         <a href="/" class="flex items-center">
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white">
+          <span class="self-center hidden sm:block text-xl font-semibold whitespace-nowrap text-white">
             PostSnaps
+          </span>
+          <span class="self-center sm:hidden text-xl font-semibold whitespace-nowrap text-white">
+            PS
           </span>
         </a>
         <div class="flex md:order-1 justify-center max-w-[500px] flex-1">
@@ -110,7 +113,9 @@ export default function Navbar({ user }: { user?: User }) {
                               >
                               </path>
                             </svg>
-                            <span class="text-sm font-medium">Profile</span>
+                            <span class="text-sm font-medium">
+                              {user.user_metadata}
+                            </span>
                           </a>
                         </li>
                         <li>
@@ -175,6 +180,14 @@ export default function Navbar({ user }: { user?: User }) {
                   </li>
                 </>
               )}
+            <li class="md:hidden">
+              <button
+                onClick={logout}
+                class="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </div>
       </div>

@@ -17,7 +17,9 @@ export default function TooltipButton(
         type="button"
         data-tooltip-target={tooltipId}
         data-tooltip-placement="top"
-        class="flex justify-center items-center group w-[52px] h-[52px] rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 "
+        class={`flex justify-center items-center group w-[52px] h-[52px] scale-90 scale-100 rounded-full border  border-gray-600 shadow-sm hover:text-white text-gray-400 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-400  hover:scale-105 ${
+          tooltipId === "tooltip-copy" ? "hidden md:flex" : ""
+        }`}
       >
         {Icon}
         <span class="sr-only">{tooltipLabel}</span>

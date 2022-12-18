@@ -7,7 +7,7 @@ export default function EditButton() {
     <div data-dial-init class="relative group">
       <div
         id="speed-dial-menu-dropdown-alternative"
-        class="absolute bottom-14 left-0 flex w-48 hidden flex-col justify-end py-1 mb-4 space-y-2 bg-white rounded-lg border border-gray-100 shadow-sm dark:bg-gray-700 dark:border-gray-600"
+        class="absolute bottom-14 right-0  flex w-48 hidden flex-col justify-end py-1 mb-4 space-y-2 bg-white rounded-lg border border-gray-100 shadow-sm dark:bg-gray-700 dark:border-gray-600"
       >
         <ul class="text-sm text-gray-500 dark:text-gray-300">
           <li>

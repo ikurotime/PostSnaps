@@ -1,5 +1,5 @@
-import { Ref } from "preact";
 import html2canvas from "html2canvas";
+import { Ref } from "preact";
 
 export const defaultContent = {
   data: [
@@ -40,7 +40,6 @@ const getImageFile = (canvas: any) =>
       reader.readAsDataURL(blob);
       reader.onloadend = function () {
         const base64data = reader.result;
-        console.log(base64data);
         resolve(base64data);
       };
     });
@@ -89,4 +88,16 @@ export const getImage = (
       });
     }
   });
+};
+const UNILIST = ["", "K", "M", "G"];
+
+export const formatNumber = (number: number) => {
+  const sign = Math.sign(number);
+  let unit = 0;
+
+  while (Math.abs(number) > 1000) {
+    unit = unit + 1;
+    number = Math.floor(Math.abs(number) / 100) / 10;
+  }
+  return sign * Math.abs(number) + UNILIST[unit];
 };
