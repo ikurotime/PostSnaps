@@ -6,19 +6,17 @@ import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_middleware.tsx";
 import * as $2 from "./routes/api/change-password.ts";
-import * as $3 from "./routes/api/favorite.ts";
-import * as $4 from "./routes/api/get-tweet-info.ts";
-import * as $5 from "./routes/api/login.ts";
-import * as $6 from "./routes/api/logout.ts";
-import * as $7 from "./routes/api/signup.ts";
-import * as $8 from "./routes/change-password.tsx";
-import * as $9 from "./routes/explore.tsx";
-import * as $10 from "./routes/favorites.tsx";
-import * as $11 from "./routes/index.tsx";
-import * as $12 from "./routes/login.tsx";
-import * as $13 from "./routes/privacy-policy.tsx";
-import * as $14 from "./routes/reset-password.tsx";
-import * as $15 from "./routes/signup.tsx";
+import * as $3 from "./routes/api/login.ts";
+import * as $4 from "./routes/api/logout.ts";
+import * as $5 from "./routes/api/signup.ts";
+import * as $6 from "./routes/change-password.tsx";
+import * as $7 from "./routes/explore.tsx";
+import * as $8 from "./routes/favorites.tsx";
+import * as $9 from "./routes/index.tsx";
+import * as $10 from "./routes/login.tsx";
+import * as $11 from "./routes/privacy-policy.tsx";
+import * as $12 from "./routes/reset-password.tsx";
+import * as $13 from "./routes/signup.tsx";
 import * as $$0 from "./islands/BottomBar.tsx";
 import * as $$1 from "./islands/ChangeComponent.tsx";
 import * as $$2 from "./islands/ChangeLayout.tsx";
@@ -40,19 +38,17 @@ const manifest = {
     "./routes/_404.tsx": $0,
     "./routes/_middleware.tsx": $1,
     "./routes/api/change-password.ts": $2,
-    "./routes/api/favorite.ts": $3,
-    "./routes/api/get-tweet-info.ts": $4,
-    "./routes/api/login.ts": $5,
-    "./routes/api/logout.ts": $6,
-    "./routes/api/signup.ts": $7,
-    "./routes/change-password.tsx": $8,
-    "./routes/explore.tsx": $9,
-    "./routes/favorites.tsx": $10,
-    "./routes/index.tsx": $11,
-    "./routes/login.tsx": $12,
-    "./routes/privacy-policy.tsx": $13,
-    "./routes/reset-password.tsx": $14,
-    "./routes/signup.tsx": $15,
+    "./routes/api/login.ts": $3,
+    "./routes/api/logout.ts": $4,
+    "./routes/api/signup.ts": $5,
+    "./routes/change-password.tsx": $6,
+    "./routes/explore.tsx": $7,
+    "./routes/favorites.tsx": $8,
+    "./routes/index.tsx": $9,
+    "./routes/login.tsx": $10,
+    "./routes/privacy-policy.tsx": $11,
+    "./routes/reset-password.tsx": $12,
+    "./routes/signup.tsx": $13,
   },
   islands: {
     "./islands/BottomBar.tsx": $$0,

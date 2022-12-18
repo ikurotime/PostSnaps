@@ -10,7 +10,7 @@ export default function TweetMetrics({ prop, label }: Props) {
   const { tweetContent } = useAppState();
   return (
     <span class="text-gray-700">
-      {tweetContent?.data[0]?.public_metrics[prop] > 0 &&
+      {tweetContent?.data?.[0]?.public_metrics[prop] > 0 &&
         (
           <>
             <strong class="text-black">
