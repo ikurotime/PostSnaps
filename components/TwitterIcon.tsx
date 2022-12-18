@@ -1,8 +1,9 @@
-export default function TwitterIcon() {
+export default function TwitterIcon({ className = "w-5 h-5" }) {
   return (
     <svg
-      className="w-9 h-9"
+      class={className}
       viewBox="0 0 24 24"
+      fill="currentColor"
       aria-hidden="true"
     >
       <g>

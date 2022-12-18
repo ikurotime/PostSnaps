@@ -1,5 +1,6 @@
 import { User } from "supabase";
 import ContextProvider from "../components/ContextProvider.tsx";
+import Footer from "../components/Footer.tsx";
 import HomeContent from "../components/HomeContent.tsx";
 import Toast from "../components/Toast.tsx";
 
@@ -29,12 +30,13 @@ const HomeLayout = (
 ) => {
   return (
     <ContextProvider>
-      <div class="min-h-screen p-4 mx-auto max-w-screen-md h-full">
-        <div class="w-full min-h-screen m-auto flex flex-col justify-center py-14">
-          <Toast text="Copied to clipboard" />
+      <div class="relative flex flex-col min-h-screen p-4 mx-auto max-w-screen-md">
+        <div class="flex w-full min-h-full m-auto flex-col justify-center py-14">
+          <Toast />
           <HomeContent user={user} liked_post={liked_post} />
         </div>
       </div>
+      <Footer />
     </ContextProvider>
   );
 };

@@ -1,6 +1,6 @@
 import { HandlerContext } from "$fresh/server.ts";
+import { decode } from "base64-arraybuffer";
 import { supabaseClient } from "../../supabase.ts";
-
 export const handler = async (
   req: Request,
   _ctx: HandlerContext,
@@ -36,13 +36,36 @@ export const handler = async (
       headers,
     });
   }
+  //convert image from base64 to file png
+  const image = body.image.replace(/^data:image\/\w+;base64,/, "");
+  //upload image to storage
+  await supabaseClient
+    .storage
+    .from("images")
+    .upload(`images/${body.tweet_id}.png`, decode(image), {
+      contentType: "image/png",
+      cacheControl: "3600",
+      upsert: false,
+    });
 
+  // get url from path
+  const { data: urlData } = supabaseClient
+    .storage
+    .from("images")
+    .getPublicUrl(`images/${body.tweet_id}.png`);
+
+  //insert into posts table
+  await supabaseClient.from("posts").insert([{
+    post_id: body.tweet_id,
+    image: urlData.publicUrl,
+    link: body.link,
+  }]);
   const { data, error } = await supabaseClient.from("liked_posts").insert([{
     user_id: body.user_id,
     post_id: body.tweet_id,
-    image: body.image,
     link: body.link,
   }]);
+
   if (error) {
     return new Response(JSON.stringify({ message: error.message }), {
       status: 500,

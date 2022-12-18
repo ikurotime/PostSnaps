@@ -1,6 +1,5 @@
 import { useState } from "preact/hooks";
 import { useAppState } from "../components/ContextProvider.tsx";
-import { getTweetData } from "../routes/index.tsx";
 
 export default function Input() {
   const { dispatch } = useAppState();
@@ -15,9 +14,6 @@ export default function Input() {
       window.location.assign("/?tweetId=" + statusID);
     } else {
       window.location.assign("?tweetId=" + statusID);
-      getTweetData(statusID).then((res) => {
-        dispatch({ type: "SET_TWEET_CONTENT", payload: res });
-      });
     }
   };
 

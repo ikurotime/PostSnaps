@@ -1,9 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset } from "$fresh/src/runtime/utils.ts";
-import ContextProvider from "../components/ContextProvider.tsx";
-import LoginComponent from "../islands/LoginComponent.tsx";
-import Navbar from "../islands/Navbar.tsx";
+import LoginLayout from "../islands/LoginLayout.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -45,10 +43,7 @@ export default function login({ data }: PageProps) {
         />
         <link rel="stylesheet" href={asset("../globals.css")} />
       </Head>
-      <ContextProvider>
-        <Navbar />
-        <LoginComponent />
-      </ContextProvider>
+      <LoginLayout />
     </>
   );
 }

@@ -55,7 +55,6 @@ export default function Explore({ data }: PageProps) {
         />
       </Head>
       <ExploreLayout user={data.user} />
-      <h1>explore</h1>
 
       <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     </>

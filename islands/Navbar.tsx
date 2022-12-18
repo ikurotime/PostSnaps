@@ -16,14 +16,17 @@ export default function Navbar({ user }: { user?: User }) {
   };
 
   return (
-    <nav class="fixed top-0 z-10 mx-auto left-0 right-0 border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-gray-800 transition-all">
+    <nav class="fixed top-0 z-10 mx-auto left-0 right-0 border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-gray-900 transition-all">
       <div class="container flex gap-3 flex-wrap items-center justify-between mx-auto">
         <a href="/" class="flex items-center">
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white">
+          <span class="self-center hidden sm:block text-xl font-semibold whitespace-nowrap text-white">
             PostSnaps
           </span>
+          <span class="self-center sm:hidden text-xl font-semibold whitespace-nowrap text-white">
+            PS
+          </span>
         </a>
-        <div class="flex md:order-1 justify-center max-w-[500px] flex-1">
+        <div class="flex md:order-1 justify-center max-w-[500px] flex-1 gap-3">
           <Input />
           <button
             data-collapse-toggle="navbar-cta"
@@ -53,7 +56,7 @@ export default function Navbar({ user }: { user?: User }) {
           class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-cta"
         >
-          <ul class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 bg-gray-900 md:bg-gray-900 border-gray-700">
+          <ul class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
             <li>
               <a
                 href="/"
@@ -87,34 +90,21 @@ export default function Navbar({ user }: { user?: User }) {
                   <div data-dial-init class="right-24 group">
                     <div
                       id="speed-dial-menu-dropdown"
-                      class="absolute right-0 top-5 flex hidden flex-col justify-end py-1 mb-4 space-y-2 bg-white rounded-lg border border-gray-100 shadow-sm dark:border-gray-600 dark:bg-gray-700"
+                      class="absolute right-0 top-5 flex hidden flex-col justify-end py-1 mb-4 space-y-2 rounded-lg border  shadow-sm border-gray-600 bg-gray-700 "
                     >
-                      <ul class="text-sm text-gray-500 dark:text-gray-300">
+                      <ul class="text-sm text-gray-300">
                         <li>
                           <a
-                            href="#"
-                            class="flex items-center py-2 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white"
+                            href="/change-password"
+                            class="flex items-center py-2 px-5 hover:bg-gray-600 hover:text-white"
                           >
-                            <svg
-                              class="mr-2 w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              >
-                              </path>
-                            </svg>
-                            <span class="text-sm font-medium">Profile</span>
+                            <span class="text-sm font-medium">
+                              Change Password
+                            </span>
                           </a>
                         </li>
                         <li>
-                          <span class="flex items-center py-2 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white">
+                          <span class="flex items-center py-2 px-5 hover:bg-gray-600 hover:text-white">
                             <svg
                               class="mr-2 w-4 h-4"
                               fill="none"
@@ -140,10 +130,7 @@ export default function Navbar({ user }: { user?: User }) {
                         </li>
                       </ul>
                     </div>
-                    <a
-                      href="/profile"
-                      class="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
-                    >
+                    <div class="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">
                       <span
                         data-dial-toggle="speed-dial-menu-dropdown"
                         aria-controls="speed-dial-menu-dropdown"
@@ -151,7 +138,7 @@ export default function Navbar({ user }: { user?: User }) {
                       >
                         Settings
                       </span>
-                    </a>
+                    </div>
                   </div>
                 </li>
               )
@@ -175,6 +162,14 @@ export default function Navbar({ user }: { user?: User }) {
                   </li>
                 </>
               )}
+            <li class="md:hidden">
+              <button
+                onClick={logout}
+                class="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </div>
       </div>
