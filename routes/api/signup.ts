@@ -18,6 +18,15 @@ export const handler = async (
       status: 500,
     });
   }
+  const { error: updateError } = await supabaseClient.from(
+    "profiles",
+  ).update({ username: formData.username }).eq("id", data.user?.id);
+  if (updateError) {
+    return new Response(JSON.stringify({ message: updateError.message }), {
+      status: 500,
+    });
+  }
+
   setCookie(headers, {
     name: "ps.supabase.auth.token",
     value: data.session?.access_token as string,
