@@ -26,14 +26,22 @@ export type MediaType = {
 };
 
 const HomeLayout = (
-  { user, liked_post }: { user: User; liked_post: boolean },
+  { user, liked_post, tweetData }: {
+    user: User;
+    liked_post: boolean;
+    tweetData: any;
+  },
 ) => {
   return (
     <ContextProvider>
       <div class="relative flex flex-col min-h-screen p-4 mx-auto max-w-screen-md">
         <div class="flex w-full min-h-full m-auto flex-col justify-center py-14">
           <Toast />
-          <HomeContent user={user} liked_post={liked_post} />
+          <HomeContent
+            user={user}
+            liked_post={liked_post}
+            tweetData={tweetData}
+          />
         </div>
       </div>
       <Footer />

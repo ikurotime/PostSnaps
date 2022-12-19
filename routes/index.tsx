@@ -28,6 +28,7 @@ export const handler: Handlers<Data, State> = {
       tweetId,
       user: ctx.state.auth?.user,
       liked_post: ctx.state.liked_post,
+      tweetData: ctx.state.tweetData,
       tweetUser: ctx.state.tweetData?.includes?.users?.[0]?.username,
       tweetText: ctx.state.tweetData?.data?.[0]?.text?.split("https").shift(),
     };
@@ -83,6 +84,7 @@ export default function Home({ data }: PageProps) {
       </Head>
       <HomeLayout
         user={data.user}
+        tweetData={data.tweetData}
         liked_post={data.liked_post}
       />
 

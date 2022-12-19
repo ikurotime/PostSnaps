@@ -6,7 +6,7 @@ export const initialState = {
   },
   isToastShown: false,
   tweetContent: defaultContent,
-  tweetLoading: true,
+  tweetLoading: false,
   selectedStyle: "style-1",
   isLogo: true,
   padding: 5,
