@@ -31,7 +31,7 @@ export const handler: Handlers<Data, State> = {
       tweetUser: ctx.state.tweetData?.includes?.users?.[0]?.username,
       tweetText: ctx.state.tweetData?.data?.[0]?.text?.split("https").shift(),
     };
-    console.log(ctx.state.tweetData);
+
     return ctx.render(data);
   },
 };
@@ -46,7 +46,7 @@ export default function Home({ data }: PageProps) {
         <meta
           name="og:title"
           content={data.tweetText
-            ? `@${data.tweetUser} on twitter - PostSnaps`
+            ? `@${data.tweetUser} on Twitter - PostSnaps`
             : "PostSnaps"}
         />
         <meta
@@ -66,7 +66,9 @@ export default function Home({ data }: PageProps) {
         <meta name="twitter:title" content="PostSnaps" />
         <meta
           name="twitter:description"
-          content="Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter. Whether you want to share a tweet from a celebrity, a politician, or a friend, PostSnaps makes it easy to capture and share the tweet. So why wait? Try PostSnaps today and start sharing your favorite tweets in style!"
+          content={data.tweetId
+            ? data.tweetText
+            : "Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter."}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
