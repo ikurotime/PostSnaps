@@ -85,7 +85,7 @@ export default function TweetContainer(
             </div>
 
             <p class="self-start whitespace-pre-line text-2xl">
-              {tweetText.replace(/pic.twitter.com\/\w+/g, "") ??
+              {tweetText?.replace(/pic.twitter.com\/\w+/g, "") ??
                 tweetContent?.data?.[0].text}
             </p>
 
