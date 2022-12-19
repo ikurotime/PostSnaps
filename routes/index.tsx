@@ -30,7 +30,7 @@ export const handler: Handlers<Data, State> = {
       liked_post: ctx.state.liked_post,
       tweetData: ctx.state.tweetData,
       tweetUser: ctx.state.tweetData?.includes?.users?.[0]?.username,
-      tweetText: ctx.state.tweetData?.data?.[0]?.text?.split("https").shift(),
+      tweetText: ctx.state.tweetData?.data?.[0]?.text,
     };
 
     return ctx.render(data);
