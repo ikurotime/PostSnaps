@@ -28,7 +28,10 @@ export const handler: Handlers<Data, State> = {
       tweetId,
       user: ctx.state.auth?.user,
       liked_post: ctx.state.liked_post,
+      tweetUser: ctx.state.tweetData?.includes?.users?.[0]?.username,
+      tweetText: ctx.state.tweetData?.data?.[0]?.text?.split("https").shift(),
     };
+
     return ctx.render(data);
   },
 };
@@ -36,12 +39,21 @@ export default function Home({ data }: PageProps) {
   return (
     <>
       <Head>
-        <title>PostSnaps</title>
+        <title>
+          {data.tweetUser ? `PostSnaps - @${data.tweetUser}` : "PostSnaps"}
+        </title>
         <link rel="stylesheet" href={asset("../globals.css")} />
-        <meta name="og:title" content="PostSnaps" />
+        <meta
+          name="og:title"
+          content={data.tweetText
+            ? `@${data.tweetUser} on Twitter - PostSnaps`
+            : "PostSnaps"}
+        />
         <meta
           name="og:description"
-          content="Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter. Whether you want to share a tweet from a celebrity, a politician, or a friend, PostSnaps makes it easy to capture and share the tweet. So why wait? Try PostSnaps today and start sharing your favorite tweets in style!"
+          content={data.tweetId
+            ? data.tweetText
+            : "Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter."}
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -54,7 +66,9 @@ export default function Home({ data }: PageProps) {
         <meta name="twitter:title" content="PostSnaps" />
         <meta
           name="twitter:description"
-          content="Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter. Whether you want to share a tweet from a celebrity, a politician, or a friend, PostSnaps makes it easy to capture and share the tweet. So why wait? Try PostSnaps today and start sharing your favorite tweets in style!"
+          content={data.tweetId
+            ? data.tweetText
+            : "Create beautiful screenshots of tweets and share them with your friends, followers, and on social media. With PostSnaps, you can easily capture and share the most memorable, funny, or inspiring moments on Twitter."}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta

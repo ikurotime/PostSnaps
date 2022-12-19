@@ -10,6 +10,7 @@ export interface State {
     user: null;
   };
   liked_post?: boolean;
+  tweetData?: any;
 }
 
 export async function handler(
@@ -26,6 +27,15 @@ export async function handler(
     const tweetId = url.searchParams.get("tweetId");
 
     const cookies = getCookies(req.headers);
+    if (tweetId) {
+      await supabaseClient.functions.invoke("get-tweet-info", {
+        body: { statusID: tweetId },
+      }).then((res) => {
+        if (res.data) {
+          ctx.state.tweetData = res.data;
+        }
+      });
+    }
     if (cookies["ps.supabase.auth.token"]) {
       const { data, error } = await supabaseClient.auth.getUser(
         cookies["ps.supabase.auth.token"],
