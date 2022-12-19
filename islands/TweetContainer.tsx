@@ -8,7 +8,9 @@ import TwitterIcon from "../components/TwitterIcon.tsx";
 import { supabase } from "../publicSupabase.ts";
 //import { getTweetData } from "../routes/index.tsx";
 
-export default function TweetContainer({ tweetData }: { tweetData: any }) {
+export default function TweetContainer(
+  { tweetData, tweetText }: { tweetData: any; tweetText: string },
+) {
   const {
     tweetContent,
     tweetLoading,
@@ -83,14 +85,15 @@ export default function TweetContainer({ tweetData }: { tweetData: any }) {
             </div>
 
             <p class="self-start whitespace-pre-line text-2xl">
-              {tweetData?.data?.[0].text.split("https").shift() ??
-                tweetContent?.data?.[0].text.split("https").shift()}
+              {tweetText.replace(/pic.twitter.com\/\w+/g, "") ??
+                tweetContent?.data?.[0].text}
             </p>
 
-            <TweetAttatchments />
+            <TweetAttatchments tweetData={tweetData} />
 
             <div className="flex self-start gap-2">
-              {tweetData?.data?.[0]?.created_at && (
+              {(tweetData?.data?.[0]?.created_at ||
+                tweetContent?.data?.[0]?.created_at) && (
                 <span class="text-gray-700">
                   {new Date(
                     tweetData?.data[0].created_at ??

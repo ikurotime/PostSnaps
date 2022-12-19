@@ -26,10 +26,11 @@ export type MediaType = {
 };
 
 const HomeLayout = (
-  { user, liked_post, tweetData }: {
+  { user, liked_post, tweetData, tweetText }: {
     user: User;
     liked_post: boolean;
     tweetData: any;
+    tweetText: string;
   },
 ) => {
   return (
@@ -40,6 +41,7 @@ const HomeLayout = (
           <HomeContent
             user={user}
             liked_post={liked_post}
+            tweetText={tweetText}
             tweetData={tweetData}
           />
         </div>

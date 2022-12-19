@@ -24,13 +24,29 @@ export const handler: Handlers<Data, State> = {
   GET(req, ctx) {
     const params = new URL(req.url);
     const tweetId = params.searchParams.get("tweetId") || "";
+    // get all the elements from ctx.state.tweetData?.data?.[0]?.text that are links, then substitute them with the display_url property of res.data.data?.[0].entities
+    const getDisplayText = (text: string) => {
+      const entities = ctx.state.tweetData?.data?.[0]?.entities;
+      const urls = entities?.urls;
+      let displayText = text;
+
+      //substitute the links with the display_url
+      if (urls) {
+        for (let i = 0; i < urls.length; i++) {
+          const url = urls[i];
+          displayText = displayText.replace(url.url, url.display_url);
+        }
+      }
+      return displayText;
+    };
+
     const data = {
       tweetId,
       user: ctx.state.auth?.user,
       liked_post: ctx.state.liked_post,
       tweetData: ctx.state.tweetData,
       tweetUser: ctx.state.tweetData?.includes?.users?.[0]?.username,
-      tweetText: ctx.state.tweetData?.data?.[0]?.text,
+      tweetText: getDisplayText(ctx.state.tweetData?.data?.[0]?.text),
     };
 
     return ctx.render(data);
@@ -85,6 +101,7 @@ export default function Home({ data }: PageProps) {
       <HomeLayout
         user={data.user}
         tweetData={data.tweetData}
+        tweetText={data.tweetText}
         liked_post={data.liked_post}
       />
 
