@@ -5,7 +5,6 @@ import { Spinner } from "../components/Spinner.tsx";
 import TweetAttatchments from "../components/TweetAttatchments.tsx";
 import TweetMetrics from "../components/TweetMetrics.tsx";
 import TwitterIcon from "../components/TwitterIcon.tsx";
-import { supabase } from "../publicSupabase.ts";
 //import { getTweetData } from "../routes/index.tsx";
 
 export default function TweetContainer(
