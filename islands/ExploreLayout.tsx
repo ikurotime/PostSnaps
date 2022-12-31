@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { User } from "supabase";
+
 import ContextProvider from "../components/ContextProvider.tsx";
 import Footer from "../components/Footer.tsx";
 import { Spinner } from "../components/Spinner.tsx";
@@ -7,7 +7,7 @@ import Toast from "../components/Toast.tsx";
 import { supabase } from "../publicSupabase.ts";
 import Navbar from "./Navbar.tsx";
 
-const ExploreLayout = ({ user }: { user: User }) => {
+const ExploreLayout = ({ user }: { user: any }) => {
   const [posts, setPosts] = useState<any[] | null>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
