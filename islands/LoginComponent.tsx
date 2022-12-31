@@ -4,7 +4,7 @@ import GithubIcon from "../components/GithubIcon.tsx";
 import { LoginForm } from "../components/LoginForm.tsx";
 import Toast from "../components/Toast.tsx";
 import TwitterIcon from "../components/TwitterIcon.tsx";
-import { signInWith } from "../publicSupabase.ts";
+//import { signInWith } from "../publicSupabase.ts";
 export default function LoginComponent() {
   const { dispatch } = useAppState();
   const [loading, setLoading] = useState(false);
@@ -64,7 +64,7 @@ export default function LoginComponent() {
               <button
                 type="button"
                 onClick={() => {
-                  signInWith("twitter");
+                  //signInWith("twitter");
                 }}
                 class="text-white  bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center  items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2"
               >
@@ -76,7 +76,7 @@ export default function LoginComponent() {
               <button
                 type="button"
                 onClick={() => {
-                  signInWith("github");
+                  //signInWith("github");
                 }}
                 class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center  items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
               >

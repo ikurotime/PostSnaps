@@ -23,7 +23,7 @@ export async function handler(
       .includes(url.pathname)
   ) {
     const url = new URL(req.url);
-    /*
+
     const tweetId = url.searchParams.get("tweetId");
 
     const cookies = getCookies(req.headers);
@@ -64,7 +64,7 @@ export async function handler(
       if (url.pathname == "/favorites" && !data?.user) {
         return Response.redirect(url.origin + "/login");
       }
-    } */
+    }
 
     return await ctx.next();
   } else {
