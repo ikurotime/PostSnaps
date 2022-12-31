@@ -4,12 +4,16 @@ import ContextProvider from "../components/ContextProvider.tsx";
 import Footer from "../components/Footer.tsx";
 import { Spinner } from "../components/Spinner.tsx";
 import Toast from "../components/Toast.tsx";
-import { supabase } from "../publicSupabase.ts";
+import { createClient } from "supabase";
 import Navbar from "./Navbar.tsx";
 
 const ExploreLayout = ({ user }: { user: any }) => {
   const [posts, setPosts] = useState<any[] | null>([]);
   const [loading, setLoading] = useState(true);
+  const supabase = createClient(
+    "https://nitjkhytnaowbkuggtwa.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pdGpraHl0bmFvd2JrdWdndHdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA2ODc0OTAsImV4cCI6MTk4NjI2MzQ5MH0.BZRNf7yQgX8xqsvfnNROSgh6wOsDMUvYeis2M6Kh0-g",
+  );
   useEffect(() => {
     supabase.from("posts").select("*").order("created_at", {
       ascending: false,
