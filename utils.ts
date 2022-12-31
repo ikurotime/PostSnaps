@@ -20,7 +20,7 @@ export const defaultContent = {
         name: "David Huertas",
         username: "ikurotime",
         profile_image_url:
-          "https://pbs.twimg.com/profile_images/1585667050718085120/LumQqxjx_400x400.jpg",
+          "https://pbs.twimg.com/profile_images/1604853408359399425/wyhV685D_400x400.jpg",
       },
     ],
     media: [
