@@ -9,7 +9,7 @@ import EditButton from "../components/EditButton.tsx";
 import { FavoriteIcon } from "../components/FavoriteIcon.tsx";
 import TooltipButton from "../components/TooltipButton.tsx";
 import { AppContext } from "../context/AppContext.ts";
-import { supabase } from "../publicSupabase.ts";
+//import { supabase } from "../publicSupabase.ts";
 import { getImage } from "../utils.ts";
 export default function BottomBar(
   { user, liked_post }: { user: User; liked_post: boolean },
@@ -46,19 +46,19 @@ export default function BottomBar(
     } else {
       dispatch({ type: "SET_LIKES", payload: likes - 1 });
     }
-    supabase.functions.invoke("addBase64ImageToStorage", {
+    /* supabase.functions.invoke("addBase64ImageToStorage", {
       body: {
         image,
         tweet_id: tweetId,
         user_id: user?.id,
         link: "/" + window.location.search,
       },
-    });
+    }); */
   };
   useEffect(() => {
     const url = new URL(window.location.href);
     const tweetId = url.searchParams.get("tweetId");
-    supabase.from("liked_posts").select("*", { count: "exact" }).eq(
+    /*  supabase.from("liked_posts").select("*", { count: "exact" }).eq(
       "post_id",
       tweetId,
     ).then(({ count, error }) => {
@@ -68,7 +68,7 @@ export default function BottomBar(
       if (count) {
         dispatch({ type: "SET_LIKES", payload: count });
       }
-    });
+    }); */
   }, []);
 
   return (
