@@ -15,15 +15,19 @@ const ExploreLayout = ({ user }: { user: any }) => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pdGpraHl0bmFvd2JrdWdndHdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA2ODc0OTAsImV4cCI6MTk4NjI2MzQ5MH0.BZRNf7yQgX8xqsvfnNROSgh6wOsDMUvYeis2M6Kh0-g",
   );
   useEffect(() => {
-    supabase.from("posts").select("*").order("created_at", {
-      ascending: false,
-    })
-      .then(
-        (res) => {
-          setPosts(res.data);
-          setLoading(false);
-        },
-      );
+    try {
+      supabase.from("posts").select("*").order("created_at", {
+        ascending: false,
+      })
+        .then(
+          (res) => {
+            setPosts(res.data);
+            setLoading(false);
+          },
+        );
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
